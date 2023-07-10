@@ -1,5 +1,6 @@
-package com.example.C195;
+package MainApplication;
 
+import helper.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,5 +20,10 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch();
+        JDBC.openConnection();
+        JDBC.closeConnection();
+
     }
+
+
 }
