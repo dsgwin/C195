@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import model.Countries;
 
-public class HelloController {
+public class loginController {
     @FXML
     private Label welcomeText;
 
