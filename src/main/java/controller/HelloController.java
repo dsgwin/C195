@@ -14,7 +14,7 @@ public class HelloController {
     protected void onHelloButtonClick() {
         ObservableList<Countries> countryList = DBCountries.getAllCountries();
         for(Countries C : countryList){
-            System.out.println("CountryID: " + C.getCountry_id() + " Name: " + C.getCountryName());
+            System.out.println("CountryID: " + C.getCountryId()+ " Name: " + C.getCountryName());
         }
 
     }

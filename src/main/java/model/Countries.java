@@ -5,64 +5,65 @@ import java.sql.Timestamp;
 
 public class Countries {
 
-    public Countries(int country_id, String countryName) {
-        this.country_id = country_id;
-        this.countryName = countryName;
+    private int countryId;
+    private String countryName;
+    private Date createDate;
+    private String createdBy;
+
+    public Countries(int countryId, String countryName) {
+        setCountryId(countryId);
+        setCountryName(countryName);
     }
 
-    public int getCountry_id() {
-        return country_id;
+    public int getCountryId() {
+        return countryId;
     }
 
-    public void setCountry_id(int country_id) {
-        this.country_id = country_id;
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
     }
 
     public String getCountryName() {
         return countryName;
     }
 
-    public void setCountryName(String country) {
-        this.countryName = country;
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 
-    public Date getCreate_date() {
-        return create_date;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setCreate_date(Date create_date) {
-        this.create_date = create_date;
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
-    public String getCreated_by() {
-        return created_by;
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    public void setCreated_by(String created_by) {
-        this.created_by = created_by;
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
-    public Timestamp getLast_update() {
-        return last_update;
+    public Timestamp getLastUpdate() {
+        return lastUpdate;
     }
 
-    public void setLast_update(Timestamp last_update) {
-        this.last_update = last_update;
+    public void setLastUpdate(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
 
-    public String getLast_updated_by() {
-        return last_updated_by;
+    public String getLastUpdatedBy() {
+        return lastUpdatedBy;
     }
 
-    public void setLast_updated_by(String last_updated_by) {
-        this.last_updated_by = last_updated_by;
+    public void setLastUpdatedBy(String lastUpdatedBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
     }
 
-    private int country_id;
-    private String countryName;
-    private Date create_date;
-    private String created_by;
-    private Timestamp last_update;
-    private String last_updated_by;
+    private Timestamp lastUpdate;
+    private String lastUpdatedBy;
 
 }
