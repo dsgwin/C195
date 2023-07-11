@@ -1,4 +1,4 @@
-package DBAccess;
+package DAO;
 
 import helper.JDBC;
 import javafx.collections.FXCollections;

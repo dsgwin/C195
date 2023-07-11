@@ -1,6 +1,6 @@
 package controller;
 
-import DBAccess.DBCountries;
+import DAO.DBCountries;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
