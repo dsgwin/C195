@@ -3,7 +3,7 @@ package model;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-public class Customers {
+public class Customers  {
 
     private int customerId;
     private String customerName;
