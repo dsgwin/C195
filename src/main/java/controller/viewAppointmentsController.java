@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.ToggleGroup;
 
@@ -42,7 +43,18 @@ public class viewAppointmentsController  {
     private Label errorPaneTxt;
 
     @FXML
+    private RadioButton weeklyRBtn;
+
+    @FXML
     private ToggleGroup weekMonth;
+
+    @FXML
+    private RadioButton monthlyRBtn;
+
+    @FXML
+    void monthlyRBtnClick(ActionEvent event) {
+
+    }
 
     @FXML
     void onAddBtnClick(ActionEvent event) {
@@ -61,6 +73,11 @@ public class viewAppointmentsController  {
 
     @FXML
     void onUpdateBtnClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void weeklyRBtnClick(ActionEvent event) {
 
     }
 

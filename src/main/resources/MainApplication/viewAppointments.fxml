@@ -49,12 +49,12 @@
       </Label>
       <HBox alignment="CENTER" layoutX="818.0" layoutY="7.0" prefHeight="35.0" prefWidth="296.0" spacing="25.0">
          <children>
-            <RadioButton mnemonicParsing="false" selected="true" text="Weekly">
+            <RadioButton fx:id="weeklyRBtn" mnemonicParsing="false" onAction="#weeklyRBtnClick" selected="true" text="Weekly">
                <toggleGroup>
                   <ToggleGroup fx:id="weekMonth" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" text="Monthly" toggleGroup="$weekMonth" />
+            <RadioButton fx:id="monthlyRBtn" mnemonicParsing="false" onAction="#monthlyRBtnClick" text="Monthly" toggleGroup="$weekMonth" />
          </children>
       </HBox>
    </children>
