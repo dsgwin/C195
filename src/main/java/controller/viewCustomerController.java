@@ -37,6 +37,8 @@ public class viewCustomerController {
     @FXML
     void onAddBtnClick(ActionEvent event) {
 
+        helper.controllerHelper.loadAddCustomer(event);
+
     }
 
     @FXML
@@ -47,10 +49,14 @@ public class viewCustomerController {
     @FXML
     void onMainMenuBtnClick(ActionEvent event) {
 
+        helper.controllerHelper.loadMainMenu(event);
+
     }
 
     @FXML
     void onUpdateBtnClick(ActionEvent event) {
+
+        helper.controllerHelper.loadUpdateCustomer(event);
 
     }
 

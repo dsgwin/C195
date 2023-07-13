@@ -59,6 +59,8 @@ public class viewAppointmentsController  {
     @FXML
     void onAddBtnClick(ActionEvent event) {
 
+        helper.controllerHelper.loadAddAppointment(event);
+
     }
 
     @FXML
@@ -69,10 +71,14 @@ public class viewAppointmentsController  {
     @FXML
     void onMainMenuBtnClick(ActionEvent event) {
 
+        helper.controllerHelper.loadMainMenu(event);
+
     }
 
     @FXML
     void onUpdateBtnClick(ActionEvent event) {
+
+        helper.controllerHelper.loadUpdateAppointment(event);
 
     }
 

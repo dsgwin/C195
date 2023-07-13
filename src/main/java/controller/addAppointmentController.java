@@ -54,6 +54,8 @@ public class addAppointmentController {
     @FXML
     void onCancelBtnClick(ActionEvent event) {
 
+        helper.controllerHelper.loadAppointmentView(event);
+
     }
 
     @FXML

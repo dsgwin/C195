@@ -7,34 +7,31 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-public class updateAppointmentController  {
+public class updateAppointmentController {
 
     @FXML
     private TextField appointmentIdTxt;
 
     @FXML
-    private Button cancelBtn;
-
-    @FXML
-    private ComboBox<?> contactBox;
-
-    @FXML
-    private TextField customerIdTxt;
+    private TextField titleTxt;
 
     @FXML
     private TextField descriptionTxt;
 
     @FXML
-    private DatePicker endDateBox;
-
-    @FXML
-    private ComboBox<?> endTimeBox;
-
-    @FXML
     private TextField locationTxt;
 
     @FXML
-    private Button saveBtn;
+    private TextField typeTxt;
+
+    @FXML
+    private TextField customerIdTxt;
+
+    @FXML
+    private TextField userIdTxt;
+
+    @FXML
+    private ComboBox<?> contactBox;
 
     @FXML
     private DatePicker startDateBox;
@@ -43,16 +40,21 @@ public class updateAppointmentController  {
     private ComboBox<?> startTimeBox;
 
     @FXML
-    private TextField titleTxt;
+    private ComboBox<?> endTimeBox;
 
     @FXML
-    private TextField typeTxt;
+    private DatePicker endDateBox;
 
     @FXML
-    private TextField userIdTxt;
+    private Button saveBtn;
+
+    @FXML
+    private Button cancelBtn;
 
     @FXML
     void onCancelBtnClick(ActionEvent event) {
+
+        helper.controllerHelper.loadAppointmentView(event);
 
     }
 
@@ -60,5 +62,4 @@ public class updateAppointmentController  {
     void onSaveBtnClick(ActionEvent event) {
 
     }
-
 }
