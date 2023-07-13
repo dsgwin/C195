@@ -60,6 +60,11 @@ public class loginController implements Initializable {
 
         Locale locale = Locale.getDefault();
         ZoneId zoneId = ZoneId.systemDefault();
+        rb = ResourceBundle.getBundle("MainApplication/Nat", Locale.FRANCE);
+        System.out.println(rb);
+
+        loginBtn.setText(rb.getString("login"));
+
         System.out.println(locale);
         System.out.println(zoneId);
         zoneIdLbl.setText(String.valueOf(zoneId));

@@ -50,8 +50,8 @@
                 <TextField fx:id="cityTxt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <HBox prefHeight="30.0" prefWidth="182.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                     <children>
-                        <Button fx:id="saveBtn" mnemonicParsing="false" text="Save" />
-                        <Button fx:id="cancelBtn" mnemonicParsing="false" text="Cancel" />
+                        <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#onSaveBtnClick" text="Save" />
+                        <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#onCancelBtnClick" text="Cancel" />
                     </children>
                     <padding>
                         <Insets top="20.0" />
