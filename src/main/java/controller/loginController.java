@@ -70,19 +70,24 @@ public class loginController implements Initializable {
 
         Locale locale = Locale.getDefault();
         ZoneId zoneId = ZoneId.systemDefault();
-        rb = ResourceBundle.getBundle("MainApplication/Nat", Locale.FRANCE);
-        System.out.println(rb);
 
-        welcomeLbl.setText(rb.getString("Welcome"));
-        pleaseLbl.setText(rb.getString("Please"));
-        usernameLbl.setText(rb.getString("Username"));
-        passwordLbl.setText(rb.getString("Password"));
-        detectedLbl.setText(rb.getString("Detected"));
-        loginBtn.setText(rb.getString("Login"));
-        exitBtn.setText(rb.getString("Exit"));
+        try {
+            rb = ResourceBundle.getBundle("MainApplication/Nat", Locale.FRANCE);
 
-        System.out.println(locale);
-        System.out.println(zoneId);
+
+            welcomeLbl.setText(rb.getString("Welcome"));
+            pleaseLbl.setText(rb.getString("Please"));
+            usernameLbl.setText(rb.getString("Username"));
+            passwordLbl.setText(rb.getString("Password"));
+            detectedLbl.setText(rb.getString("Detected"));
+            loginBtn.setText(rb.getString("Login"));
+            exitBtn.setText(rb.getString("Exit"));
+        }
+        catch (Exception e){
+            // Handles exception and defaults to English if locale not recognized.
+
+        }
+
         zoneIdLbl.setText(String.valueOf(zoneId));
 
 
