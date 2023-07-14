@@ -2,17 +2,12 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
-import java.io.File;
 import java.net.URL;
 import java.time.ZoneId;
 import java.util.Locale;
@@ -20,12 +15,14 @@ import java.util.ResourceBundle;
 
 public class loginController implements Initializable {
 
-    Stage stage;
-    Parent scene;
-    Locale locale = Locale.getDefault();
+    @FXML
+    private Label usernameLbl;
 
     @FXML
     private TextField loginUsername;
+
+    @FXML
+    private Label passwordLbl;
 
     @FXML
     private PasswordField loginPassword;
@@ -37,7 +34,20 @@ public class loginController implements Initializable {
     private Button exitBtn;
 
     @FXML
+    private Label welcomeLbl;
+
+    @FXML
+    private Label pleaseLbl;
+
+    @FXML
+    private Label detectedLbl;
+
+    @FXML
     private Label zoneIdLbl;
+
+    @FXML
+    private Label errorLbl;
+
 
     @FXML
     void exitBtnClicked(ActionEvent event) {
@@ -63,7 +73,13 @@ public class loginController implements Initializable {
         rb = ResourceBundle.getBundle("MainApplication/Nat", Locale.FRANCE);
         System.out.println(rb);
 
-        loginBtn.setText(rb.getString("login"));
+        welcomeLbl.setText(rb.getString("Welcome"));
+        pleaseLbl.setText(rb.getString("Please"));
+        usernameLbl.setText(rb.getString("Username"));
+        passwordLbl.setText(rb.getString("Password"));
+        detectedLbl.setText(rb.getString("Detected"));
+        loginBtn.setText(rb.getString("Login"));
+        exitBtn.setText(rb.getString("Exit"));
 
         System.out.println(locale);
         System.out.println(zoneId);
