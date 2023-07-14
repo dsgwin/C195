@@ -72,7 +72,7 @@ public class loginController implements Initializable {
         ZoneId zoneId = ZoneId.systemDefault();
 
         try {
-            rb = ResourceBundle.getBundle("MainApplication/Nat", Locale.FRANCE);
+            rb = ResourceBundle.getBundle("MainApplication/Nat", Locale.getDefault());
 
 
             welcomeLbl.setText(rb.getString("Welcome"));
