@@ -8,4 +8,5 @@ module com.example.c195 {
     exports MainApplication;
     exports controller;
     opens controller to javafx.fxml;
+    opens model;
 }

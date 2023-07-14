@@ -76,14 +76,14 @@ public class viewCustomerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-/*
+
         customersTblView.setItems(CustomerQuery.getAllCustomers());
         idCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         postalCodeCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
-       // phoneCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-*/
+        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+
 
     }
 
