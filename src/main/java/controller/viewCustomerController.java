@@ -13,6 +13,7 @@ import model.Customers;
 
 import java.net.URL;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
@@ -83,6 +84,7 @@ public class viewCustomerController implements Initializable {
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         postalCodeCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+
 
 
     }
