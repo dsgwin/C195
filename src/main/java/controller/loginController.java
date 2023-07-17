@@ -65,7 +65,6 @@ public class loginController implements Initializable {
             for(Users user : DAO.UsersQuery.getAllUsers()) {
                 if(username.equals(user.getUserName())) {
                     if (password.equals(user.getPassword())) {
-                        System.out.println(user.getPassword());
                         helper.controllerHelper.loadMainMenu(event);
                     }
                     else {
@@ -88,7 +87,6 @@ public class loginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        Locale locale = Locale.getDefault();
         ZoneId zoneId = ZoneId.systemDefault();
 
         try {
