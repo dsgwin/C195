@@ -3,10 +3,8 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import model.Users;
 
 import java.net.URL;
 import java.time.ZoneId;
@@ -59,16 +57,31 @@ public class loginController implements Initializable {
     @FXML
     void loginBtnClicked(ActionEvent event) {
         ResourceBundle rb = ResourceBundle.getBundle("MainApplication/Nat", Locale.getDefault());
+        String username = loginUsername.getText();
+        String password = loginPassword.getText();
 
-        if(!loginUsername.getText().isEmpty() || !loginPassword.getText().isEmpty()) {
+        if(!username.isEmpty() || !password.isEmpty()) {
 
-            helper.controllerHelper.loadMainMenu(event);
+            for(Users user : DAO.UsersQuery.getAllUsers()) {
+                if(username.equals(user.getUserName())) {
+                    if (password.equals(user.getPassword())) {
+                        System.out.println(user.getPassword());
+                        helper.controllerHelper.loadMainMenu(event);
+                    }
+                    else {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle(rb.getString("Failed"));
+                        alert.setContentText(rb.getString("TryAgain"));
+                        alert.showAndWait();
+                    }
+                }
+
+            }
+
         }
         else {
             errorLbl.setText(rb.getString("Required"));
         }
-
-
 
     }
 
@@ -96,8 +109,6 @@ public class loginController implements Initializable {
         }
 
         zoneIdLbl.setText(String.valueOf(zoneId));
-
-
 
     }
 

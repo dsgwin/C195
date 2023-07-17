@@ -5,6 +5,12 @@ import java.sql.Timestamp;
 
 public class Users {
 
+    public Users(int userId, String userName, String password) {
+        this.userId = userId;
+        this.userName = userName;
+        this.password = password;
+    }
+
     public int getUserId() {
         return userId;
     }
@@ -29,44 +35,10 @@ public class Users {
         this.password = password;
     }
 
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Timestamp getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(Timestamp lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public String getLastUpdatedBy() {
-        return lastUpdatedBy;
-    }
-
-    public void setLastUpdatedBy(String lastUpdatedBy) {
-        this.lastUpdatedBy = lastUpdatedBy;
-    }
 
     private int userId;
     private String userName;
     private String password;
-    private Date createDate;
-    private String createdBy;
-    private Timestamp lastUpdate;
-    private String lastUpdatedBy;
+
 
 }
