@@ -58,8 +58,15 @@ public class loginController implements Initializable {
 
     @FXML
     void loginBtnClicked(ActionEvent event) {
+        ResourceBundle rb = ResourceBundle.getBundle("MainApplication/Nat", Locale.getDefault());
+
+        if(!loginUsername.getText().isEmpty() || !loginPassword.getText().isEmpty()) {
 
             helper.controllerHelper.loadMainMenu(event);
+        }
+        else {
+            errorLbl.setText(rb.getString("Required"));
+        }
 
 
 
