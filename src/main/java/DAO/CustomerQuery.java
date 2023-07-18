@@ -14,7 +14,12 @@ public abstract class CustomerQuery {
         ObservableList<Customers> customerlist = FXCollections.observableArrayList();
 
         try{
-            String sql = "SELECT * from customers";
+            String sql = "SELECT Customer_ID, Customer_Name, Address, Postal_Code, Phone, " +
+                    "customers.Division_ID as Division_ID, customers.Create_Date, customers.Created_By, " +
+                    "customers.Last_Update,customers.Last_Updated_By, Division " +
+                    "FROM customers " +
+                    "INNER JOIN first_level_divisions " +
+                    "ON customers.Division_ID=first_level_divisions.Division_ID;";
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
 
@@ -31,9 +36,14 @@ public abstract class CustomerQuery {
                 Timestamp lastUpdate = rs.getTimestamp("Last_Update");
                 String lastUpdatedBy = rs.getString("Last_Updated_By");
                 int divisionId = rs.getInt("Division_ID");
+                String division = rs.getString("Division");
 
-                Customers C = new Customers(customerId, customerName, address, postalCode, phoneNumber, createDate, createdBy, lastUpdate, lastUpdatedBy, divisionId);
+                Customers C = new Customers(customerId, customerName, address, postalCode, phoneNumber, createDate, createdBy, lastUpdate, lastUpdatedBy, divisionId, division);
                 customerlist.add(C);
+
+                for(Customers customer : customerlist){
+
+                }
 
             }
 

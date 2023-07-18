@@ -32,22 +32,15 @@ public class viewCustomerController implements Initializable {
     private TableColumn<Customers, String> addressCol;
 
     @FXML
-    private TableColumn<Customers, String> cityCol;
-
-    @FXML
     private TableColumn<Customers, String> stateProvCol;
 
     @FXML
     private TableColumn<Customers, String> postalCodeCol;
 
-    @FXML
-    private TableColumn<Customers, String> countryCol;
 
     @FXML
     private TableColumn<Customers, String> phoneCol;
 
-    @FXML
-    private Label errorPaneTxt;
 
     @FXML
     void onAddBtnClick(ActionEvent event) {
@@ -84,6 +77,7 @@ public class viewCustomerController implements Initializable {
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         postalCodeCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        stateProvCol.setCellValueFactory(new PropertyValueFactory<>("division"));
 
 
 
