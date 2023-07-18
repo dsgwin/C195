@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CountriesQuery {
+public abstract class CountriesQuery {
 
     public static ObservableList<Countries> getAllCountries() {
 

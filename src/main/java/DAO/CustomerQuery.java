@@ -41,10 +41,6 @@ public abstract class CustomerQuery {
                 Customers C = new Customers(customerId, customerName, address, postalCode, phoneNumber, createDate, createdBy, lastUpdate, lastUpdatedBy, divisionId, division);
                 customerlist.add(C);
 
-                for(Customers customer : customerlist){
-
-                }
-
             }
 
 
@@ -90,5 +86,32 @@ public abstract class CustomerQuery {
 
         return rowsAffected;
         }
+/*
+    public static Customers getCustomer(int customerID) throws SQLException {
+
+        String sql = "SELECT Customer_ID, Customer_Name, Address, Postal_Code, Phone, c.Division_ID as Division_ID, c.Create_Date, c.Created_By, c.Last_Update, c.Last_Updated_By, Division, countries.Country " +
+        "FROM customers as c INNER JOIN first_level_divisions as d ON c.Division_ID=d.Division_ID INNER JOIN countries ON countries.Country_ID=d.Country_ID WHERE Customer_ID = (?);" ;
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setInt(1, customerID);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            int customerId = rs.getInt("Customer_ID");
+            String customerName = rs.getString("Customer_Name");
+            String address = rs.getString("Address");
+            String postalCode = rs.getString("Postal_Code");
+            String phoneNumber = rs.getString("Phone");
+            Date createDate = rs.getDate("Create_Date");
+            String createdBy = rs.getString("Created_By");
+            Timestamp lastUpdate = rs.getTimestamp("Last_Update");
+            String lastUpdatedBy = rs.getString("Last_Updated_By");
+            int divisionId = rs.getInt("Division_ID");
+            String division = rs.getString("Division");
+
+            Customers customer = new Customers(customerId, customerName, address, postalCode, phoneNumber, createDate, createdBy, lastUpdate, lastUpdatedBy, divisionId, division);
+
+        }
+        return customer;
+    }*/
 
 }
