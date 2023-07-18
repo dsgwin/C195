@@ -15,11 +15,11 @@ public abstract class CustomerQuery {
 
         try{
             String sql = "SELECT Customer_ID, Customer_Name, Address, Postal_Code, Phone, " +
-                    "customers.Division_ID as Division_ID, customers.Create_Date, customers.Created_By, " +
-                    "customers.Last_Update,customers.Last_Updated_By, Division " +
-                    "FROM customers " +
-                    "INNER JOIN first_level_divisions " +
-                    "ON customers.Division_ID=first_level_divisions.Division_ID;";
+                         "customers.Division_ID as Division_ID, customers.Create_Date, customers.Created_By, " +
+                         "customers.Last_Update,customers.Last_Updated_By, Division " +
+                         "FROM customers " +
+                         "INNER JOIN first_level_divisions " +
+                         "ON customers.Division_ID=first_level_divisions.Division_ID;";
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
 
