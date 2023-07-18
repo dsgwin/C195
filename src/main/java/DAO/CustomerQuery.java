@@ -59,4 +59,25 @@ public abstract class CustomerQuery {
 
         return rowsAffected;
     }
+
+    public static int update(String customerName, String address, String postalCode) throws SQLException {
+        String sql = "INSERT INTO customers (Customer_Name, Address, Postal_Code) VALUES(?, ?, ?)";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setString(1, customerName);
+        ps.setString(2,address);
+        ps.setString(3,postalCode);
+        int rowsAffected = ps.executeUpdate();
+
+        return rowsAffected;
+    }
+
+
+    public static int delete(String customerId) throws SQLException {
+        String sql = "DELETE FROM customers (Customer_ID) VALUES(?)";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        int rowsAffected = ps.executeUpdate();
+
+        return rowsAffected;
+        }
+
 }

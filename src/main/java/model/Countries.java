@@ -66,4 +66,8 @@ public class Countries {
     private Timestamp lastUpdate;
     private String lastUpdatedBy;
 
+    public String toString() {
+        return countryName;
+    }
+
 }
