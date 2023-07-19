@@ -113,6 +113,11 @@ public class updateCustomerController implements Initializable {
                 countryId = division.getCountryId();
             }
         }
+        for(FirstLevelDivisions division : divisionList) {
+            if (division.getCountryId() == countryId) {
+                state_provinceBox.getItems().add(division);
+            }
+        }
         for(Countries country : countryList){
             if(countryId == country.getCountryId()){
                 countryBox.setValue(country);
