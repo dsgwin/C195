@@ -17,6 +17,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class viewCustomerController implements Initializable {
@@ -55,7 +56,26 @@ public class viewCustomerController implements Initializable {
     }
 
     @FXML
-    void onDeleteBtnClick(ActionEvent event) {
+    void onDeleteBtnClick(ActionEvent event) throws SQLException {
+        Customers customer = customersTblView.getSelectionModel().getSelectedItem();
+        try {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you would like to delete " + customer.getCustomerName() + " and all associated appointments?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                DAO.CustomerQuery.delete(customer.getCustomerId());
+                customersTblView.setItems(CustomerQuery.getAllCustomers());
+                customersTblView.refresh();
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No customer selected");
+            alert.setContentText("Please select a customer from the list to delete");
+            alert.showAndWait();
+
+        }
 
     }
 
@@ -86,7 +106,6 @@ public class viewCustomerController implements Initializable {
             stage.show();
         }
         catch (Exception e) {
-            System.out.println(e);
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("No customer selected");
             alert.setContentText("Please select a customer from the list to update");

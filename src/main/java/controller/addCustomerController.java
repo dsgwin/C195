@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import model.Countries;
 import model.FirstLevelDivisions;
+import model.Users;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -74,10 +75,11 @@ public class addCustomerController implements Initializable {
         String phone = phoneTxt.getText();
         FirstLevelDivisions division = state_provinceBox.getValue();
         int divisionId = division.getDivisionId();
+        String user = Users.currentUserName;
 
         if(!customerName.isEmpty() || !customerAddress.isEmpty() || customerPostal.isEmpty() || !phone.isEmpty() || !(division == null)){
             try{
-                DAO.CustomerQuery.insert(customerName, customerAddress, customerPostal, phone, divisionId);
+                DAO.CustomerQuery.insert(customerName, customerAddress, customerPostal, phone, divisionId, user);
                 helper.controllerHelper.loadCustomerView(event);
 
             } catch (SQLException e) {

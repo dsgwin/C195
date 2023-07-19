@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 public class Users {
 
     public static int currentUserId;
+    public static String currentUserName;
 
     public Users(int userId, String userName, String password) {
         this.userId = userId;

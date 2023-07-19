@@ -66,6 +66,7 @@ public class loginController implements Initializable {
                 if(username.equals(user.getUserName())) {
                     if (password.equals(user.getPassword())) {
                         Users.currentUserId = user.getUserId();
+                        Users.currentUserName = user.getUserName();
                         helper.controllerHelper.loadMainMenu(event);
                     }
                     else {
