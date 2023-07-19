@@ -3,7 +3,6 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -17,23 +16,12 @@ import java.util.ResourceBundle;
 
 public class addCustomerController implements Initializable {
 
-    @FXML
-    private TextField customerIdTxt;
 
     @FXML
     private TextField nameTxt;
 
     @FXML
     private TextField addressTxt;
-
-    @FXML
-    private TextField cityTxt;
-
-    @FXML
-    private Button saveBtn;
-
-    @FXML
-    private Button cancelBtn;
 
     @FXML
     private TextField postalCodeTxt;
@@ -65,7 +53,6 @@ public class addCustomerController implements Initializable {
 
     }
 
-
     @FXML
     void onCancelBtnClick(ActionEvent event) {
 
@@ -77,9 +64,6 @@ public class addCustomerController implements Initializable {
             helper.controllerHelper.loadCustomerView(event);
         }
     }
-
-
-
 
     @FXML
     void onSaveBtnClick(ActionEvent event) {
@@ -107,8 +91,6 @@ public class addCustomerController implements Initializable {
             alert.setContentText("Please fill out all fields.");
             alert.showAndWait();
         }
-
-
 
     }
 

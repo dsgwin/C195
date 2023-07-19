@@ -65,6 +65,7 @@ public class loginController implements Initializable {
             for(Users user : DAO.UsersQuery.getAllUsers()) {
                 if(username.equals(user.getUserName())) {
                     if (password.equals(user.getPassword())) {
+                        Users.currentUserId = user.getUserId();
                         helper.controllerHelper.loadMainMenu(event);
                     }
                     else {

@@ -4,11 +4,13 @@ import DAO.CustomerQuery;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import model.Customers;
 
 import java.net.URL;
@@ -18,6 +20,9 @@ import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 public class viewCustomerController implements Initializable {
+
+    Stage stage;
+    Parent scene;
 
     @FXML
     private TableView<Customers> customersTblView;
@@ -64,7 +69,29 @@ public class viewCustomerController implements Initializable {
     @FXML
     void onUpdateBtnClick(ActionEvent event) {
 
-        helper.controllerHelper.loadUpdateCustomer(event);
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/MainApplication/updateCustomer.fxml"));
+            loader.load();
+
+            updateCustomerController updateController = loader.getController();
+
+            updateController.sendCustomer(customersTblView.getSelectionModel().getSelectedItem());
+
+
+            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+        catch (Exception e) {
+            System.out.println(e);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No customer selected");
+            alert.setContentText("Please select a customer from the list to update");
+            alert.showAndWait();
+        }
 
     }
 
