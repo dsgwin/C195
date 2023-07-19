@@ -21,7 +21,6 @@ public class updateCustomerController implements Initializable {
     ObservableList<FirstLevelDivisions> divisionList = FXCollections.observableArrayList();
 
 
-
     @FXML
     private TextField customerIdTxt;
 
@@ -30,12 +29,6 @@ public class updateCustomerController implements Initializable {
 
     @FXML
     private TextField addressTxt;
-
-    @FXML
-    private Button saveBtn;
-
-    @FXML
-    private Button cancelBtn;
 
     @FXML
     private TextField postalCodeTxt;
