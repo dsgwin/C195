@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public abstract class AppointmentsQuery {
 
-    public static ObservableList<Appointments> getAllAppointents() {
+    public static ObservableList<Appointments> getAllAppointments() {
 
         ObservableList<Appointments> alist = FXCollections.observableArrayList();
 

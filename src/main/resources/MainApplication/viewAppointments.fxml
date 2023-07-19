@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="471.0" prefWidth="1128.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.viewAppointmentsController">
+<AnchorPane prefHeight="471.0" prefWidth="1128.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.viewAppointmentsController">
    <children>
       <Label layoutX="14.0" layoutY="6.0" text="Appointments">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TableView layoutX="28.0" layoutY="49.0" prefHeight="361.0" prefWidth="1073.0">
+      <TableView fx:id="tblView" layoutX="28.0" layoutY="49.0" prefHeight="361.0" prefWidth="1073.0">
          <columns>
             <TableColumn fx:id="idCol" prefWidth="47.0" text="ID" />
             <TableColumn fx:id="titleCol" prefWidth="54.0" text="Title" />

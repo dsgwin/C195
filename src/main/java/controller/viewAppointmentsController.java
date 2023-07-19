@@ -1,43 +1,52 @@
 package controller;
 
+import DAO.AppointmentsQuery;
+import DAO.CustomerQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.ToggleGroup;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import model.Appointments;
 
-public class viewAppointmentsController  {
+import java.net.URL;
+import java.sql.Date;
+import java.util.ResourceBundle;
 
-    @FXML
-    private TableColumn<?, ?> idCol;
-
-    @FXML
-    private TableColumn<?, ?> titleCol;
+public class viewAppointmentsController  implements Initializable {
 
     @FXML
-    private TableColumn<?, ?> descriptionCol;
+    private TableView<Appointments> tblView;
 
     @FXML
-    private TableColumn<?, ?> locationCol;
+    private TableColumn<Appointments, Integer> idCol;
 
     @FXML
-    private TableColumn<?, ?> contactCol;
+    private TableColumn<Appointments, String> titleCol;
 
     @FXML
-    private TableColumn<?, ?> typeCol;
+    private TableColumn<Appointments, String> descriptionCol;
 
     @FXML
-    private TableColumn<?, ?> startCol;
+    private TableColumn<Appointments, String> locationCol;
 
     @FXML
-    private TableColumn<?, ?> endCol;
+    private TableColumn<Appointments, String> contactCol;
 
     @FXML
-    private TableColumn<?, ?> customerIdCol;
+    private TableColumn<Appointments, String> typeCol;
 
     @FXML
-    private TableColumn<?, ?> userIdCol;
+    private TableColumn<Appointments, Date> startCol;
+
+    @FXML
+    private TableColumn<Appointments, Date> endCol;
+
+    @FXML
+    private TableColumn<Appointments, Integer> customerIdCol;
+
+    @FXML
+    private TableColumn<Appointments, Integer> userIdCol;
 
     @FXML
     private Label errorPaneTxt;
@@ -84,6 +93,25 @@ public class viewAppointmentsController  {
 
     @FXML
     void weeklyRBtnClick(ActionEvent event) {
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+        tblView.setItems(AppointmentsQuery.getAllAppointments());
+        idCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        contactCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("end"));
+        customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
+
+
 
     }
 
