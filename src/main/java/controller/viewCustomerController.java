@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 public class viewCustomerController implements Initializable {
 
     Stage stage;
-    Parent scene;
+
 
     @FXML
     private TableView<Customers> customersTblView;
