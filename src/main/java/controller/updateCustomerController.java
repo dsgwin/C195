@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import model.Countries;
 import model.Customers;
 import model.FirstLevelDivisions;
+import model.Users;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -80,7 +81,7 @@ public class updateCustomerController implements Initializable {
 
         if(!customerName.isEmpty() || !customerAddress.isEmpty() || customerPostal.isEmpty() || !phone.isEmpty() || !(division == null)){
             try{
-                DAO.CustomerQuery.update(customerId, customerName, customerAddress, customerPostal, phone, divisionId);
+                DAO.CustomerQuery.update(customerId, customerName, customerAddress, customerPostal, phone, divisionId, Users.currentUserName);
                 helper.controllerHelper.loadCustomerView(event);
 
             } catch (SQLException e) {

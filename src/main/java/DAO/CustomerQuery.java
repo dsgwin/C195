@@ -14,12 +14,11 @@ public abstract class CustomerQuery {
         ObservableList<Customers> customerlist = FXCollections.observableArrayList();
 
         try{
-            String sql = "SELECT Customer_ID, Customer_Name, Address, Postal_Code, Phone, " +
-                         "customers.Division_ID as Division_ID, customers.Create_Date, customers.Created_By, " +
-                         "customers.Last_Update,customers.Last_Updated_By, Division " +
-                         "FROM customers " +
-                         "INNER JOIN first_level_divisions " +
-                         "ON customers.Division_ID=first_level_divisions.Division_ID;";
+            String sql = "SELECT Customer_ID, Customer_Name, Address, Postal_Code, Phone, c.Division_ID as Division_ID, " +
+                    "c.Create_Date, c.Created_By, c.Last_Update, c.Last_Updated_By, Division, countries.Country " +
+                    "FROM customers  AS c " +
+                    "INNER JOIN first_level_divisions AS d ON c.Division_ID=d.Division_ID " +
+                    "INNER JOIN countries ON d.Country_ID = countries.Country_ID;";
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
 
@@ -37,8 +36,9 @@ public abstract class CustomerQuery {
                 String lastUpdatedBy = rs.getString("Last_Updated_By");
                 int divisionId = rs.getInt("Division_ID");
                 String division = rs.getString("Division");
+                String country = rs.getString("Country");
 
-                Customers C = new Customers(customerId, customerName, address, postalCode, phoneNumber, createDate, createdBy, lastUpdate, lastUpdatedBy, divisionId, division);
+                Customers C = new Customers(customerId, customerName, address, postalCode, phoneNumber, createDate, createdBy, lastUpdate, lastUpdatedBy, divisionId, division, country);
                 customerlist.add(C);
 
             }
@@ -69,15 +69,16 @@ public abstract class CustomerQuery {
         return rowsAffected;
     }
 
-    public static int update(int customerId, String customerName, String address, String postalCode, String phone, int divisionId) throws SQLException {
-        String sql = "UPDATE customers SET Customer_Name=(?), Address=(?), Postal_Code=(?), Phone=(?), Division_ID=(?) WHERE Customer_ID=(?)";
+    public static int update(int customerId, String customerName, String address, String postalCode, String phone, int divisionId, String userName) throws SQLException {
+        String sql = "UPDATE customers SET Customer_Name=(?), Address=(?), Postal_Code=(?), Phone=(?), Division_ID=(?), Last_Updated_By=(?) WHERE Customer_ID=(?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setString(1, customerName);
         ps.setString(2,address);
         ps.setString(3,postalCode);
         ps.setString(4,phone);
         ps.setInt(5,divisionId);
-        ps.setInt(6,customerId);
+        ps.setString(6,userName);
+        ps.setInt(7,customerId);
         int rowsAffected = ps.executeUpdate();
 
         return rowsAffected;

@@ -11,7 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Countries;
 import model.Customers;
+import model.FirstLevelDivisions;
 
 import java.net.URL;
 import java.sql.Date;
@@ -42,6 +44,9 @@ public class viewCustomerController implements Initializable {
 
     @FXML
     private TableColumn<Customers, String> postalCodeCol;
+
+    @FXML
+    private TableColumn<Countries, String> countryCol;
 
 
     @FXML
@@ -122,6 +127,7 @@ public class viewCustomerController implements Initializable {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         postalCodeCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        countryCol.setCellValueFactory(new PropertyValueFactory<>("country"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         stateProvCol.setCellValueFactory(new PropertyValueFactory<>("division"));
 

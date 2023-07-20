@@ -15,10 +15,10 @@ public class Customers  {
     private Timestamp lastUpdate;
     private String lastUpdatedBy;
     private int divisionId;
-
     private String division;
+    private String country;
 
-    public Customers(int customerId, String customerName, String address, String postalCode, String phoneNumber, Date createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy, int divisionId, String division) {
+    public Customers(int customerId, String customerName, String address, String postalCode, String phoneNumber, Date createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy, int divisionId, String division, String country) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.address = address;
@@ -30,6 +30,8 @@ public class Customers  {
         this.lastUpdatedBy = lastUpdatedBy;
         this.divisionId = divisionId;
         this.division = division;
+        this.country = country;
+
 
     }
 
@@ -119,6 +121,14 @@ public class Customers  {
 
     public void setDivision(String division) {
         this.division = division;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
 
