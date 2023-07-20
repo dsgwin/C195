@@ -1,7 +1,11 @@
 package helper;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.SimpleTimeZone;
+import java.util.TimeZone;
 
 public class dateTimeFormatter {
 
@@ -25,5 +29,17 @@ public class dateTimeFormatter {
         DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         return customFormatter.format(locZdt);
+    }
+
+    public static String dateToLocalTimeZone(Date date, TimeZone timeZone){
+        /*DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern(date.toString());
+        LocalDateTime LDT = customFormatter;
+        ZoneId zoneId = ZoneId.systemDefault();
+        ZonedDateTime zdt = ZonedDateTime.of(date, zoneId);
+        SimpleDateFormat test = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        test.setTimeZone(TimeZone.parseCustomTimeZone(zoneId));
+        */
+        String test = "test";
+        return test;
     }
 }
