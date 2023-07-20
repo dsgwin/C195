@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.util.Optional;
 
-public class controllerHelper {
+public abstract class controllerHelper {
 
     public static void applicationExit(Event event){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you would like to exit the application?");
@@ -133,31 +133,6 @@ public class controllerHelper {
             loader.load();
 
             addAppointmentController Controller = loader.getController();
-
-            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            Parent scene = loader.getRoot();
-            stage.setScene(new Scene(scene));
-            stage.show();
-
-        }
-        catch (Exception e) {
-
-            System.out.println(e);
-
-        }
-
-    }
-
-    public static void loadUpdateCustomer(Event event){
-        Stage stage;
-
-        try{
-
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(controllerHelper.class.getResource("/MainApplication/updateCustomer.fxml"));
-            loader.load();
-
-            updateCustomerController Controller = loader.getController();
 
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             Parent scene = loader.getRoot();
