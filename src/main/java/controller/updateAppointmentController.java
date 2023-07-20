@@ -6,6 +6,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import model.Appointments;
+import model.Countries;
+import model.Customers;
+import model.FirstLevelDivisions;
 
 public class updateAppointmentController {
 
@@ -60,6 +64,22 @@ public class updateAppointmentController {
 
     @FXML
     void onSaveBtnClick(ActionEvent event) {
+
+    }
+
+    void sendAppointment(Appointments appointment){
+
+        appointmentIdTxt.setText(String.valueOf(appointment.getAppointmentId()));
+        titleTxt.setText(appointment.getTitle());
+        descriptionTxt.setText(appointment.getDescription());
+        locationTxt.setText(appointment.getLocation());
+        typeTxt.setText(appointment.getType());
+        //startDateBox.setDayCellFactory();
+        //endDateBox.setDayCellFactory();
+        customerIdTxt.setText(String.valueOf(appointment.getCustomerId()));
+        userIdTxt.setText(String.valueOf(appointment.getUserId()));
+        //contactBoxIdTxt.setText(String.valueOf(appointment.getContactId()));
+
 
     }
 }
