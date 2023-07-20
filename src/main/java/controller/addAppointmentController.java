@@ -79,17 +79,11 @@ public class addAppointmentController implements Initializable {
         LocalDate startDate = startDateBox.getValue();
         String startHour = startHourBox.getValue();
         String startMinute = startMinuteBox.getValue();
-        // obtain the LocalDateTime
-        LocalDateTime ldt = LocalDateTime.of(startDate.getYear(), startDate.getMonthValue(), startDate.getDayOfMonth(), Integer.parseInt(startHour), Integer.parseInt(startMinute));
-        // obtain the ZonedDateTime version of LocalDateTime
-        ZonedDateTime locZdt = ZonedDateTime.of(ldt, ZoneId.systemDefault());
-        // obtain the UTC ZonedDateTime of the ZonedDateTime version of LocalDateTime
-        ZonedDateTime utcZdt = locZdt.withZoneSameInstant(ZoneOffset.UTC);
-        // make it look good in 24 hour format sortable by yyyy-MM-dd HH:mm:ss  (we are going to ignore fractions beyond seconds
-        DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String locZdt = helper.dateTimeFormatter.formatLocal(startDate, startHour, startMinute);
+        String utcZdt = helper.dateTimeFormatter.formatUTC(startDate, startHour, startMinute);
 
-        System.out.println(customFormatter.format(locZdt));
-        System.out.println(customFormatter.format(utcZdt));
+        System.out.println(locZdt);
+        System.out.println(utcZdt);
 
     }
 
