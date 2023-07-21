@@ -51,7 +51,7 @@ public abstract class AppointmentsQuery {
         return alist;
     }
 
-    public static int insert(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType,  Date appointmentStart, Date appointmentEnd, int customerId, int userId, int contactId, String userName) throws SQLException {
+    public static int insert(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType,  Timestamp appointmentStart, Timestamp appointmentEnd, int customerId, int userId, int contactId, String userName) throws SQLException {
 
             String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Created_By, Last_Updated_By, Customer_ID, User_ID, Contact_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -60,8 +60,8 @@ public abstract class AppointmentsQuery {
             ps.setString(2, appointmentDescription);
             ps.setString(3, appointmentLocation);
             ps.setString(4, appointmentType);
-            ps.setDate(5, appointmentStart);
-            ps.setDate(6, appointmentEnd);
+            ps.setTimestamp(5, appointmentStart);
+            ps.setTimestamp(6, appointmentEnd);
             ps.setString(7, userName);
             ps.setString(8, userName);
             ps.setInt(9, customerId);

@@ -32,6 +32,10 @@ public class Contacts {
         this.email = email;
     }
 
+    public String toString(){
+        return contactName;
+    }
+
     private int contactId;
     private String contactName;
     private String email;

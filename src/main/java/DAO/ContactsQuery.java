@@ -24,7 +24,7 @@ public abstract class ContactsQuery {
             while (rs.next()) {
                 int contactId = rs.getInt("Contact_ID");
                 String contactName = rs.getString("Contact_Name");
-                String emailAddress = rs.getString("Email_Address");
+                String emailAddress = rs.getString("Email");
                 Contacts C = new Contacts(contactId, contactName, emailAddress);
                 contactList.add(C);
 

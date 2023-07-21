@@ -1,5 +1,7 @@
 package controller;
 
+import DAO.AppointmentsQuery;
+import DAO.ContactsQuery;
 import helper.dateTimeFormatter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,8 +10,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import model.Contacts;
+import model.Countries;
+import model.Users;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -78,10 +83,11 @@ public class addAppointmentController implements Initializable {
     }
 
     @FXML
-    void onSaveBtnClick(ActionEvent event) {
+    void onSaveBtnClick(ActionEvent event) throws SQLException {
         String title = titleTxt.getText();
         String description = descriptionTxt.getText();
         String location = locationTxt.getText();
+        String type = typeTxt.getText();
         int customerId = Integer.parseInt(customerIdTxt.getText());
         int userId = Integer.parseInt(userIdTxt.getText());
         Contacts contact = contactBox.getValue();
@@ -91,14 +97,13 @@ public class addAppointmentController implements Initializable {
         LocalDate startDate = startDateBox.getValue();
         String startHour = startHourBox.getValue();
         String startMinute = startMinuteBox.getValue();
-        Timestamp startTime = dateTimeFormatter.localToUTCTimestamp(startDate, startHour, startMinute);
+        Timestamp appointmentStart = dateTimeFormatter.localToUTCTimestamp(startDate, startHour, startMinute);
         //Process Appointment End Date/Time
         LocalDate endDate = startDateBox.getValue();
         String endHour = startHourBox.getValue();
         String endMinute = startMinuteBox.getValue();
-        Timestamp endTime = dateTimeFormatter.localToUTCTimestamp(startDate, startHour, startMinute);
-
-
+        Timestamp appointmentEnd = dateTimeFormatter.localToUTCTimestamp(startDate, startHour, startMinute);
+        AppointmentsQuery.insert(title, description, location, type, appointmentStart, appointmentEnd, customerId, userId, contactId, Users.currentUserName);
 
 
     }
@@ -115,6 +120,10 @@ public class addAppointmentController implements Initializable {
         endHourBox.setItems(hours);
         endMinuteBox.setItems(minutes);
         // Initialize Contact ComboBoxes
+        ObservableList<Contacts> contactList = ContactsQuery.getAllContacts();
+        for(Contacts contact : contactList){
+            contactBox.getItems().add(contact);
+        }
 
 
     }
