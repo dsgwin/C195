@@ -2,6 +2,12 @@ package model;
 
 public class Contacts {
 
+    public Contacts(int contactId, String contactName, String email) {
+        this.contactId = contactId;
+        this.contactName = contactName;
+        this.email = email;
+    }
+
     public int getContactId() {
         return contactId;
     }

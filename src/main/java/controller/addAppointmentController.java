@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import model.Contacts;
 
 import java.net.URL;
 import java.sql.Timestamp;
@@ -26,7 +27,7 @@ public class addAppointmentController implements Initializable {
     private Button cancelBtn;
 
     @FXML
-    private ComboBox<String> contactBox;
+    private ComboBox<Contacts> contactBox;
 
     @FXML
     private ComboBox<String> startHourBox;
@@ -78,13 +79,26 @@ public class addAppointmentController implements Initializable {
 
     @FXML
     void onSaveBtnClick(ActionEvent event) {
+        String title = titleTxt.getText();
+        String description = descriptionTxt.getText();
+        String location = locationTxt.getText();
+        int customerId = Integer.parseInt(customerIdTxt.getText());
+        int userId = Integer.parseInt(userIdTxt.getText());
+        Contacts contact = contactBox.getValue();
+        int contactId = contact.getContactId();
+
+        //Process Appointment Start Date/Time
         LocalDate startDate = startDateBox.getValue();
         String startHour = startHourBox.getValue();
         String startMinute = startMinuteBox.getValue();
-        Timestamp locZdt = dateTimeFormatter.localToUTCTimestamp(startDate, startHour, startMinute);
+        Timestamp startTime = dateTimeFormatter.localToUTCTimestamp(startDate, startHour, startMinute);
+        //Process Appointment End Date/Time
+        LocalDate endDate = startDateBox.getValue();
+        String endHour = startHourBox.getValue();
+        String endMinute = startMinuteBox.getValue();
+        Timestamp endTime = dateTimeFormatter.localToUTCTimestamp(startDate, startHour, startMinute);
 
 
-        System.out.println(locZdt);
 
 
     }
@@ -92,6 +106,7 @@ public class addAppointmentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
+        // Initialize Date/Time ComboBoxes
         hours.addAll("00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
                 "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23");
         minutes.addAll("00", "15", "30", "45");
@@ -99,6 +114,8 @@ public class addAppointmentController implements Initializable {
         startMinuteBox.setItems(minutes);
         endHourBox.setItems(hours);
         endMinuteBox.setItems(minutes);
+        // Initialize Contact ComboBoxes
+
 
     }
 
