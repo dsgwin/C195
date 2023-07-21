@@ -5,10 +5,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 public abstract class AppointmentsQuery {
 
@@ -29,11 +28,15 @@ public abstract class AppointmentsQuery {
                 String appointmentDescription = rs.getString("Description");
                 String appointmentLocation = rs.getString("Location");
                 String appointmentType = rs.getString("Type");
-                Date appointmentStart = rs.getDate("Start");
-                Date appointmentEnd = rs.getDate("End");
                 int customerId = rs.getInt("Customer_ID");
                 int userId = rs.getInt("User_ID");
                 int contactId = rs.getInt("Contact_ID");
+
+                //Get LocalDateTime Objects and convert to ZonedDateTime
+                Timestamp appointmentStart = rs.getTimestamp("Start");
+                Timestamp appointmentEnd = rs.getTimestamp("End");
+
+
                 Appointments A = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation, appointmentType, appointmentStart, appointmentEnd, customerId, userId, contactId);
                 alist.add(A);
 

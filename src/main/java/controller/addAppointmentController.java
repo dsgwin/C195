@@ -1,5 +1,6 @@
 package controller;
 
+import helper.dateTimeFormatter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
+import java.sql.Timestamp;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -79,11 +81,11 @@ public class addAppointmentController implements Initializable {
         LocalDate startDate = startDateBox.getValue();
         String startHour = startHourBox.getValue();
         String startMinute = startMinuteBox.getValue();
-        String locZdt = helper.dateTimeFormatter.formatLocal(startDate, startHour, startMinute);
-        String utcZdt = helper.dateTimeFormatter.formatUTC(startDate, startHour, startMinute);
+        Timestamp locZdt = dateTimeFormatter.localToUTCTimestamp(startDate, startHour, startMinute);
+
 
         System.out.println(locZdt);
-        System.out.println(utcZdt);
+
 
     }
 

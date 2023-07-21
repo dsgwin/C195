@@ -9,6 +9,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 public class Main extends Application {
     @Override
@@ -22,6 +25,15 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException {
         JDBC.openConnection();
+        ZoneId myZone = ZoneId.systemDefault();
+        ZonedDateTime myZDT = ZonedDateTime.of(java.time.LocalDateTime.now(), myZone);
+        ZoneId utcZoneId = ZoneId.of("UTC");
+        ZonedDateTime utcZDT = ZonedDateTime.ofInstant(myZDT.toInstant(), utcZoneId);
+        System.out.println(myZDT);
+        System.out.println(utcZDT);
+
+
+
         launch();
         JDBC.closeConnection();
 

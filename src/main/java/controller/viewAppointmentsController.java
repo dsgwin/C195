@@ -11,6 +11,10 @@ import model.Appointments;
 
 import java.net.URL;
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class viewAppointmentsController  implements Initializable {
@@ -37,10 +41,10 @@ public class viewAppointmentsController  implements Initializable {
     private TableColumn<Appointments, String> typeCol;
 
     @FXML
-    private TableColumn<Appointments, Date> startCol;
+    private TableColumn<Appointments, Timestamp> startCol;
 
     @FXML
-    private TableColumn<Appointments, Date> endCol;
+    private TableColumn<Appointments, Timestamp> endCol;
 
     @FXML
     private TableColumn<Appointments, Integer> customerIdCol;
