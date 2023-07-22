@@ -20,6 +20,7 @@ public abstract class UsersQuery {
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
 
+
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -40,5 +41,31 @@ public abstract class UsersQuery {
 
 
         return userList;
+    }
+    public static Boolean userLoginQuery(String loginUserName, String loginPassword) throws SQLException {
+        Boolean loginResult = false;
+
+        String sql = "SELECT User_Name, Password, User_ID from users WHERE User_Name=(?)";
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setString(1, loginUserName);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            int userId = rs.getInt("User_ID");
+            String userPassword = rs.getString("Password");
+            String userName = rs.getString("User_Name");
+
+            if (loginPassword.equals(userPassword)) {
+                loginResult = true;
+                Users.currentUserName = userName;
+                Users.currentUserId = userId;
+            } else {
+                loginResult = false;
+            }
+        }
+
+
+
+        return loginResult;
     }
 }

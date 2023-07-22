@@ -1,5 +1,6 @@
 package controller;
 
+import DAO.UsersQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -7,6 +8,7 @@ import javafx.scene.control.*;
 import model.Users;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -55,31 +57,22 @@ public class loginController implements Initializable {
     }
 
     @FXML
-    void loginBtnClicked(ActionEvent event) {
+    void loginBtnClicked(ActionEvent event) throws SQLException {
         ResourceBundle rb = ResourceBundle.getBundle("MainApplication/Nat", Locale.getDefault());
         String username = loginUsername.getText();
         String password = loginPassword.getText();
 
         if(!username.isEmpty() || !password.isEmpty()) {
-
-            for(Users user : DAO.UsersQuery.getAllUsers()) {
-                if(username.equals(user.getUserName())) {
-                    if (password.equals(user.getPassword())) {
-                        Users.currentUserId = user.getUserId();
-                        Users.currentUserName = user.getUserName();
+                if(UsersQuery.userLoginQuery(username, password)) {
                         helper.controllerHelper.loadMainMenu(event);
                     }
-                    else {
+                else {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle(rb.getString("Failed"));
                         alert.setContentText(rb.getString("TryAgain"));
                         alert.showAndWait();
                     }
                 }
-
-            }
-
-        }
         else {
             errorLbl.setText(rb.getString("Required"));
         }
