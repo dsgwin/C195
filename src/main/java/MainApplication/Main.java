@@ -1,6 +1,5 @@
 package MainApplication;
 
-import DAO.CustomerQuery;
 import helper.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+
 
 public class Main extends Application {
     @Override
@@ -25,7 +23,7 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException {
         JDBC.openConnection();
-
+        System.out.println(helper.dateTimeFormatter.localToEDT(LocalDateTime.now()));
         launch();
         JDBC.closeConnection();
 

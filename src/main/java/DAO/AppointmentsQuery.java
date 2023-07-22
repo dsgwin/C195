@@ -7,7 +7,6 @@ import model.Appointments;
 
 import java.sql.*;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 
 public abstract class AppointmentsQuery {
 

@@ -7,9 +7,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import model.Appointments;
-import model.Countries;
-import model.Customers;
-import model.FirstLevelDivisions;
+
 
 public class updateAppointmentController {
 

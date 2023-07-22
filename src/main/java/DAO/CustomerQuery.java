@@ -3,7 +3,6 @@ package DAO;
 import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Countries;
 import model.Customers;
 
 import java.sql.*;
