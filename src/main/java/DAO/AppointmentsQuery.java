@@ -55,7 +55,9 @@ public abstract class AppointmentsQuery {
 
     public static int insert(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType,  Timestamp appointmentStart, Timestamp appointmentEnd, int customerId, int userId, int contactId, String userName) throws SQLException {
 
-            String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Created_By, Last_Updated_By, Customer_ID, User_ID, Contact_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Created_By, Last_Updated_By, Customer_ID, User_ID, Contact_ID, Last_Update) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            Timestamp lastUpdate = helper.dateTimeFormatter.localToUTCTimestamp(LocalDateTime.now());
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ps.setString(1, appointmentTitle);
@@ -69,6 +71,7 @@ public abstract class AppointmentsQuery {
             ps.setInt(9, customerId);
             ps.setInt(10, userId);
             ps.setInt(11, contactId);
+            ps.setTimestamp(12, lastUpdate);
 
             int rowsAffected = ps.executeUpdate();
 

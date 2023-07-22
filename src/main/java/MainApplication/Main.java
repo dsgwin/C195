@@ -25,8 +25,7 @@ public class Main extends Application {
 
     public static void main(String[] args) throws SQLException {
         JDBC.openConnection();
-        LocalDateTime systemTime = LocalDateTime.now();
-        helper.dateTimeFormatter.localToUTCTimestamp(systemTime);
+
         launch();
         JDBC.closeConnection();
 
