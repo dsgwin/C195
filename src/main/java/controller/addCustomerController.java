@@ -69,15 +69,15 @@ public class addCustomerController implements Initializable {
     @FXML
     void onSaveBtnClick(ActionEvent event) {
 
-        String customerName = nameTxt.getText();
-        String customerAddress = addressTxt.getText();
-        String customerPostal = postalCodeTxt.getText();
-        String phone = phoneTxt.getText();
-        FirstLevelDivisions division = state_provinceBox.getValue();
-        int divisionId = division.getDivisionId();
-        String user = Users.currentUserName;
+        if(!nameTxt.getText().isEmpty() && !addressTxt.getText().isEmpty() && !postalCodeTxt.getText().isEmpty() && !phoneTxt.getText().isEmpty() && !(state_provinceBox.getSelectionModel().isEmpty())){
 
-        if(!customerName.isEmpty() || !customerAddress.isEmpty() || customerPostal.isEmpty() || !phone.isEmpty() || !(division == null)){
+            String customerName = nameTxt.getText();
+            String customerAddress = addressTxt.getText();
+            String customerPostal = postalCodeTxt.getText();
+            String phone = phoneTxt.getText();
+            FirstLevelDivisions division = state_provinceBox.getValue();
+            int divisionId = division.getDivisionId();
+            String user = Users.currentUserName;
             try{
                 DAO.CustomerQuery.insert(customerName, customerAddress, customerPostal, phone, divisionId, user);
                 helper.controllerHelper.loadCustomerView(event);

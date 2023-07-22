@@ -74,8 +74,6 @@ public abstract class AppointmentsQuery {
 
             int rowsAffected = ps.executeUpdate();
 
-
-
         return rowsAffected;
     }
 
@@ -98,8 +96,6 @@ public abstract class AppointmentsQuery {
 
         int rowsAffected = ps.executeUpdate();
 
-
-
         return rowsAffected;
     }
 
@@ -107,6 +103,19 @@ public abstract class AppointmentsQuery {
         String sql = "DELETE FROM appointments WHERE Appointment_ID=(?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setInt(1, appointmentId);
+        int rowsAffected = ps.executeUpdate();
+
+        return rowsAffected;
+    }
+
+    public static int deleteCustomerAppointments(int customerId) throws SQLException {
+
+            String sql = "DELETE FROM appointments WHERE Customer_ID=(?)";
+
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+
+            ps.setInt(1, customerId);
+
         int rowsAffected = ps.executeUpdate();
 
         return rowsAffected;

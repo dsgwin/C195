@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
-public class dateTimeFormatter {
+public abstract class dateTimeFormatter {
 
     public static Timestamp localToTimestamp(LocalDate date, String hour, String minute) {
         System.out.println("System Time: " + date.getYear() + date.getMonthValue() + date.getDayOfMonth() + Integer.parseInt(hour) + Integer.parseInt(minute));

@@ -100,9 +100,10 @@ public class addAppointmentController implements Initializable {
         LocalDate endDate = startDateBox.getValue();
         String endHour = startHourBox.getValue();
         String endMinute = startMinuteBox.getValue();
-        Timestamp appointmentEnd = dateTimeFormatter.localToTimestamp(startDate, startHour, startMinute);
+        Timestamp appointmentEnd = dateTimeFormatter.localToTimestamp(endDate, endHour, endMinute);
         AppointmentsQuery.insert(title, description, location, type, appointmentStart, appointmentEnd, customerId, userId, contactId, Users.currentUserName);
 
+        helper.controllerHelper.loadAppointmentView(event);
 
     }
 

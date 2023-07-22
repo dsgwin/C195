@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import model.Customers;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 
 public abstract class CustomerQuery {
 
@@ -54,7 +55,10 @@ public abstract class CustomerQuery {
     };
 
     public static int insert(String customerName, String address, String postalCode, String phone, int divisionId, String user) throws SQLException {
-        String sql = "INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Division_ID, Created_By, Last_Updated_By) VALUES(?, ?, ?, ?, ?, ?, ?)";
+
+        Timestamp lastUpdate = helper.dateTimeFormatter.localToUTCTimestamp(LocalDateTime.now());
+
+        String sql = "INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Division_ID, Created_By, Last_Updated_By, Last_Update) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setString(1, customerName);
         ps.setString(2,address);
@@ -63,13 +67,16 @@ public abstract class CustomerQuery {
         ps.setInt(5,divisionId);
         ps.setString(6, user);
         ps.setString(7, user);
+        ps.setTimestamp(8, lastUpdate);
         int rowsAffected = ps.executeUpdate();
 
         return rowsAffected;
     }
 
     public static int update(int customerId, String customerName, String address, String postalCode, String phone, int divisionId, String userName) throws SQLException {
-        String sql = "UPDATE customers SET Customer_Name=(?), Address=(?), Postal_Code=(?), Phone=(?), Division_ID=(?), Last_Updated_By=(?) WHERE Customer_ID=(?)";
+        Timestamp lastUpdate = helper.dateTimeFormatter.localToUTCTimestamp(LocalDateTime.now());
+
+        String sql = "UPDATE customers SET Customer_Name=(?), Address=(?), Postal_Code=(?), Phone=(?), Division_ID=(?), Last_Updated_By=(?), Last_Update=(?) WHERE Customer_ID=(?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setString(1, customerName);
         ps.setString(2,address);
@@ -78,6 +85,7 @@ public abstract class CustomerQuery {
         ps.setInt(5,divisionId);
         ps.setString(6,userName);
         ps.setInt(7,customerId);
+        ps.setTimestamp(8, lastUpdate);
         int rowsAffected = ps.executeUpdate();
 
         return rowsAffected;

@@ -1,6 +1,7 @@
 package controller;
 
 import DAO.CustomerQuery;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Appointments;
 import model.Countries;
 import model.Customers;
 
@@ -64,6 +66,9 @@ public class viewCustomerController implements Initializable {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
+
+                int appointmentsDeleted = DAO.AppointmentsQuery.deleteCustomerAppointments(customer.getCustomerId());
+
                 DAO.CustomerQuery.delete(customer.getCustomerId());
                 customersTblView.setItems(CustomerQuery.getAllCustomers());
                 customersTblView.refresh();

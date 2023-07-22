@@ -79,8 +79,7 @@ public class updateCustomerController implements Initializable {
         FirstLevelDivisions division = state_provinceBox.getValue();
         int divisionId = division.getDivisionId();
 
-        if(!customerName.isEmpty() || !customerAddress.isEmpty() || customerPostal.isEmpty() || !phone.isEmpty() || !(division == null)){
-            try{
+        if(!nameTxt.getText().isEmpty() && !addressTxt.getText().isEmpty() && !postalCodeTxt.getText().isEmpty() && !phoneTxt.getText().isEmpty() && !(state_provinceBox.getSelectionModel().isEmpty())){            try{
                 DAO.CustomerQuery.update(customerId, customerName, customerAddress, customerPostal, phone, divisionId, Users.currentUserName);
                 helper.controllerHelper.loadCustomerView(event);
 
