@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 public class Appointments {
 
 
-    public Appointments(int appointmentId, String title, String description, String location, String type, Timestamp start, Timestamp end, int customerId, int userId, int contactId) {
+    public Appointments(int appointmentId, String title, String description, String location, String type, Timestamp start, Timestamp end, int customerId, int userId, int contactId, String contactName) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
@@ -17,6 +17,7 @@ public class Appointments {
         this.customerId = customerId;
         this.userId = userId;
         this.contactId = contactId;
+        this.contactName = contactName;
     }
 
     public int getAppointmentId() {
@@ -99,6 +100,14 @@ public class Appointments {
         this.contactId = contactId;
     }
 
+    public String getContactName() {
+        return contactName;
+    }
+
+    public void setContactName(String contactName) {
+        this.contactName = contactName;
+    }
+
     private int appointmentId;
     private String title;
     private String description;
@@ -109,4 +118,5 @@ public class Appointments {
     private int customerId;
     private int userId;
     private int contactId;
+    private String contactName;
 }

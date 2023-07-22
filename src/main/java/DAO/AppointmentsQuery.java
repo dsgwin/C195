@@ -16,7 +16,7 @@ public abstract class AppointmentsQuery {
         ObservableList<Appointments> alist = FXCollections.observableArrayList();
 
         try{
-            String sql = "SELECT * from appointments";
+            String sql = "SELECT a.*, c.Contact_Name FROM appointments as a INNER JOIN contacts as c ON a.Contact_ID=c.Contact_ID";
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
 
@@ -31,14 +31,16 @@ public abstract class AppointmentsQuery {
                 int customerId = rs.getInt("Customer_ID");
                 int userId = rs.getInt("User_ID");
                 int contactId = rs.getInt("Contact_ID");
+                String contactName = rs.getString("Contact_Name");
 
                 //Get LocalDateTime Objects and convert to ZonedDateTime
                 Timestamp appointmentStart = rs.getTimestamp("Start");
                 Timestamp appointmentEnd = rs.getTimestamp("End");
 
 
-                Appointments A = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation, appointmentType, appointmentStart, appointmentEnd, customerId, userId, contactId);
+                Appointments A = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation, appointmentType, appointmentStart, appointmentEnd, customerId, userId, contactId, contactName);
                 alist.add(A);
+                System.out.println(A.getAppointmentId());
 
             }
 

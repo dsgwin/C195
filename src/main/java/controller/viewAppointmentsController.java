@@ -1,20 +1,16 @@
 package controller;
 
 import DAO.AppointmentsQuery;
-import DAO.CustomerQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Appointments;
+import model.Contacts;
 
 import java.net.URL;
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class viewAppointmentsController  implements Initializable {
@@ -35,7 +31,7 @@ public class viewAppointmentsController  implements Initializable {
     private TableColumn<Appointments, String> locationCol;
 
     @FXML
-    private TableColumn<Appointments, String> contactCol;
+    private TableColumn<Contacts, String> contactCol;
 
     @FXML
     private TableColumn<Appointments, String> typeCol;
@@ -104,11 +100,11 @@ public class viewAppointmentsController  implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         tblView.setItems(AppointmentsQuery.getAllAppointments());
-        idCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        idCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
-        contactCol.setCellValueFactory(new PropertyValueFactory<>("contactId"));
+        contactCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
         startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
         endCol.setCellValueFactory(new PropertyValueFactory<>("end"));
