@@ -21,7 +21,7 @@ public class dateTimeFormatter {
         System.out.println("UTC Zoned: " + utcZdt + " - " + ZoneId.of("UTC"));
         ZonedDateTime edtZdt = locZdt.withZoneSameInstant(ZoneId.of("America/New_York"));
         System.out.println("EDT Zoned: " + edtZdt + " - " + ZoneId.of("America/New_York"));
-        Timestamp timestamp = Timestamp.valueOf(utcZdt.toLocalDateTime());
+        Timestamp timestamp = Timestamp.valueOf(locZdt.toLocalDateTime());
         System.out.println("UTC Timestamp: " + timestamp);
         return timestamp;
     }
