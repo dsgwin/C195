@@ -1,6 +1,7 @@
 package controller;
 
 import DAO.AppointmentsQuery;
+import DAO.CustomerQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +13,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointments;
 import model.Contacts;
+import model.Customers;
 
 import java.net.URL;
 import java.sql.Timestamp;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class viewAppointmentsController  implements Initializable {
@@ -81,6 +84,27 @@ public class viewAppointmentsController  implements Initializable {
     @FXML
     void onDeleteBtnClick(ActionEvent event) {
 
+        Appointments appointment = tblView.getSelectionModel().getSelectedItem();
+        try {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you would like to delete " + appointment.getTitle() + "?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+
+                DAO.AppointmentsQuery.delete(appointment.getAppointmentId());
+                tblView.setItems(AppointmentsQuery.getAllAppointments());
+                tblView.refresh();
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No appointment selected");
+            alert.setContentText("Please select an appointment from the list to delete");
+            alert.showAndWait();
+
+        }
+
     }
 
     @FXML
@@ -107,6 +131,7 @@ public class viewAppointmentsController  implements Initializable {
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
+            stage.centerOnScreen();
             stage.show();
         }
         catch (Exception e) {
@@ -127,6 +152,7 @@ public class viewAppointmentsController  implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        idCol.setSortType(TableColumn.SortType.ASCENDING);
 
         tblView.setItems(AppointmentsQuery.getAllAppointments());
         idCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
@@ -139,6 +165,8 @@ public class viewAppointmentsController  implements Initializable {
         endCol.setCellValueFactory(new PropertyValueFactory<>("end"));
         customerIdCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
+
+        tblView.getSortOrder().add(idCol);
 
 
 

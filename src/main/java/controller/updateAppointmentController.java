@@ -109,6 +109,8 @@ public class updateAppointmentController implements Initializable {
 
         AppointmentsQuery.update(appointmentId, title, description, location, type, appointmentStart, appointmentEnd, customerId, userId, contactId, Users.currentUserName);
 
+        helper.controllerHelper.loadAppointmentView(event);
+
     }
 
     void sendAppointment(Appointments appointment){

@@ -38,6 +38,7 @@ public abstract class controllerHelper {
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
+            stage.centerOnScreen();
             stage.show();
 
         }
@@ -63,6 +64,7 @@ public abstract class controllerHelper {
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
+            stage.centerOnScreen();
             stage.show();
 
         }
@@ -87,6 +89,7 @@ public abstract class controllerHelper {
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
+            stage.centerOnScreen();
             stage.show();
 
         }
@@ -95,31 +98,6 @@ public abstract class controllerHelper {
             System.out.println(e);
 
         }
-    }
-
-    public static void loadUpdateAppointment(Event event){
-        Stage stage;
-
-        try{
-
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(controllerHelper.class.getResource("/MainApplication/updateAppointment.fxml"));
-            loader.load();
-
-            updateAppointmentController Controller = loader.getController();
-
-            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            Parent scene = loader.getRoot();
-            stage.setScene(new Scene(scene));
-            stage.show();
-
-        }
-        catch (Exception e) {
-
-            System.out.println(e);
-
-        }
-
     }
 
     public static void loadAddAppointment(Event event){
@@ -135,8 +113,10 @@ public abstract class controllerHelper {
             addAppointmentController Controller = loader.getController();
 
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            stage.centerOnScreen();
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
+            stage.centerOnScreen();
             stage.show();
 
         }
@@ -163,6 +143,7 @@ public abstract class controllerHelper {
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
+            stage.centerOnScreen();
             stage.show();
 
         }

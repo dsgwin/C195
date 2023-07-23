@@ -107,6 +107,7 @@ public class viewCustomerController implements Initializable {
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
+            stage.centerOnScreen();
             stage.show();
         }
         catch (Exception e) {
@@ -121,6 +122,9 @@ public class viewCustomerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        idCol.setSortType(TableColumn.SortType.ASCENDING);
+
+
         customersTblView.setItems(CustomerQuery.getAllCustomers());
         idCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
@@ -130,8 +134,7 @@ public class viewCustomerController implements Initializable {
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         stateProvCol.setCellValueFactory(new PropertyValueFactory<>("division"));
 
-
-
+        customersTblView.getSortOrder().add(idCol);
     }
 
 }
