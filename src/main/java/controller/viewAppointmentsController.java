@@ -86,7 +86,7 @@ public class viewAppointmentsController  implements Initializable {
 
         Appointments appointment = tblView.getSelectionModel().getSelectedItem();
         try {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you would like to delete " + appointment.getTitle() + "?");
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you would like to delete Appointment ID:" + appointment.getAppointmentId() + " for " + appointment.getType() + "?");
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
