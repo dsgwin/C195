@@ -74,6 +74,7 @@ public abstract class CustomerQuery {
     }
 
     public static int update(int customerId, String customerName, String address, String postalCode, String phone, int divisionId, String userName) throws SQLException {
+
         Timestamp lastUpdate = helper.dateTimeFormatter.localToUTCTimestamp(LocalDateTime.now());
 
         String sql = "UPDATE customers SET Customer_Name=(?), Address=(?), Postal_Code=(?), Phone=(?), Division_ID=(?), Last_Updated_By=(?), Last_Update=(?) WHERE Customer_ID=(?)";
@@ -84,8 +85,8 @@ public abstract class CustomerQuery {
         ps.setString(4,phone);
         ps.setInt(5,divisionId);
         ps.setString(6,userName);
-        ps.setInt(7,customerId);
-        ps.setTimestamp(8, lastUpdate);
+        ps.setTimestamp(7, lastUpdate);
+        ps.setInt(8,customerId);
         int rowsAffected = ps.executeUpdate();
 
         return rowsAffected;

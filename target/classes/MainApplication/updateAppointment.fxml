@@ -59,20 +59,7 @@
                 <TextField fx:id="descriptionTxt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <TextField fx:id="locationTxt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <TextField fx:id="typeTxt" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <TextField fx:id="customerIdTxt" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                <TextField fx:id="userIdTxt" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                <ComboBox fx:id="contactBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                 <DatePicker fx:id="startDateBox" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                <DatePicker fx:id="endDateBox" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                <HBox prefHeight="30.0" prefWidth="182.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="12">
-                    <children>
-                        <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#onSaveBtnClick" text="Save" />
-                        <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#onCancelBtnClick" text="Cancel" />
-                    </children>
-                    <padding>
-                        <Insets top="20.0" />
-                    </padding>
-                </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                     <children>
                         <ComboBox fx:id="startHourBox" prefHeight="21.0" prefWidth="80.0" promptText="Hour" />
@@ -84,6 +71,7 @@
                         <ComboBox fx:id="startMinuteBox" prefHeight="25.0" prefWidth="101.0" promptText="Minutes" />
                     </children>
                 </HBox>
+                <DatePicker fx:id="endDateBox" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                 <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                     <children>
                         <ComboBox fx:id="endHourBox" prefHeight="21.0" prefWidth="80.0" promptText="Hour" />
@@ -94,6 +82,18 @@
                         </Label>
                         <ComboBox fx:id="endMinuteBox" prefHeight="25.0" prefWidth="101.0" promptText="Minutes" />
                     </children>
+                </HBox>
+                <TextField fx:id="customerIdTxt" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                <TextField fx:id="userIdTxt" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                <ComboBox fx:id="contactBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                <HBox prefHeight="30.0" prefWidth="182.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="12">
+                    <children>
+                        <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#onSaveBtnClick" text="Save" />
+                        <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#onCancelBtnClick" text="Cancel" />
+                    </children>
+                    <padding>
+                        <Insets top="20.0" />
+                    </padding>
                 </HBox>
             </children>
             <padding>
