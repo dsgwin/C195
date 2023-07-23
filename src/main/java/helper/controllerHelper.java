@@ -19,6 +19,7 @@ public abstract class controllerHelper {
 
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK) {
+            JDBC.closeConnection();
             System.exit(0);
         }
     }
