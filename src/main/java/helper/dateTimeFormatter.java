@@ -42,9 +42,15 @@ public abstract class dateTimeFormatter {
         return timestamp;
     }
 
-    public static String formatTime(LocalDateTime date) {
+    public static String formatTimeHour(LocalDateTime date) {
 
-        DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("HH");
+
+        return customFormatter.format(date);
+    }
+    public static String formatTimeMinute(LocalDateTime date) {
+
+        DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("mm");
 
         return customFormatter.format(date);
     }

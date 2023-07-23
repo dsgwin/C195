@@ -39,7 +39,6 @@ public abstract class AppointmentsQuery {
 
                 Appointments A = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation, appointmentType, appointmentStart, appointmentEnd, customerId, userId, contactId, contactName);
                 alist.add(A);
-                System.out.println(A.getAppointmentId());
 
             }
 

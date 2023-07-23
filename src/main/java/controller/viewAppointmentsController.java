@@ -3,9 +3,13 @@ package controller;
 import DAO.AppointmentsQuery;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import model.Appointments;
 import model.Contacts;
 
@@ -14,6 +18,8 @@ import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 public class viewAppointmentsController  implements Initializable {
+
+    Stage stage;
 
     @FXML
     private TableView<Appointments> tblView;
@@ -87,7 +93,30 @@ public class viewAppointmentsController  implements Initializable {
     @FXML
     void onUpdateBtnClick(ActionEvent event) {
 
-        helper.controllerHelper.loadUpdateAppointment(event);
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/MainApplication/updateAppointment.fxml"));
+            loader.load();
+
+            updateAppointmentController updateController = loader.getController();
+
+            updateController.sendAppointment(tblView.getSelectionModel().getSelectedItem());
+
+
+            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+        catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No appointment selected");
+            alert.setContentText("Please select an appointment from the list to update");
+            alert.showAndWait();
+        }
+
+
 
     }
 

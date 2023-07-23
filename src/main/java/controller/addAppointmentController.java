@@ -16,6 +16,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.*;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class addAppointmentController implements Initializable {
@@ -76,7 +77,12 @@ public class addAppointmentController implements Initializable {
     @FXML
     void onCancelBtnClick(ActionEvent event) {
 
-        helper.controllerHelper.loadAppointmentView(event);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to cancel?\nAll values will be discarded.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            helper.controllerHelper.loadAppointmentView(event);
+        }
 
     }
 
