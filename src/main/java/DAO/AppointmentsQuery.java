@@ -76,7 +76,7 @@ public abstract class AppointmentsQuery {
         return rowsAffected;
     }
 
-    public static int update(int appointmentId, String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType,  Date appointmentStart, Date appointmentEnd, int customerId, int userId, int contactId, String userName) throws SQLException {
+    public static int update(int appointmentId, String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType,  Timestamp appointmentStart, Timestamp appointmentEnd, int customerId, int userId, int contactId, String userName) throws SQLException {
 
         String sql = "UPDATE appointments SET Title=(?), Description=(?), Location=(?), Type=(?), Start=(?), End=(?), Last_Updated_By=(?), Customer_ID=(?), User_ID=(?), Contact_ID=(?) WHERE Appointment_ID=(?)";
 
@@ -85,8 +85,8 @@ public abstract class AppointmentsQuery {
         ps.setString(2, appointmentDescription);
         ps.setString(3, appointmentLocation);
         ps.setString(4, appointmentType);
-        ps.setDate(5, appointmentStart);
-        ps.setDate(6, appointmentEnd);
+        ps.setTimestamp(5, appointmentStart);
+        ps.setTimestamp(6, appointmentEnd);
         ps.setString(7, userName);
         ps.setInt(8, customerId);
         ps.setInt(9, userId);

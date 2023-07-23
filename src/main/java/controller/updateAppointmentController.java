@@ -1,5 +1,6 @@
 package controller;
 
+import DAO.AppointmentsQuery;
 import DAO.ContactsQuery;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,13 +11,15 @@ import javafx.scene.control.*;
 import model.Appointments;
 import model.Contacts;
 import helper.*;
-
+import model.Users;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.TimeZone;
+
 
 
 public class updateAppointmentController implements Initializable {
@@ -69,12 +72,6 @@ public class updateAppointmentController implements Initializable {
     private DatePicker endDateBox;
 
     @FXML
-    private Button saveBtn;
-
-    @FXML
-    private Button cancelBtn;
-
-    @FXML
     void onCancelBtnClick(ActionEvent event) {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to cancel?\nAll values will be discarded.");
@@ -87,7 +84,30 @@ public class updateAppointmentController implements Initializable {
     }
 
     @FXML
-    void onSaveBtnClick(ActionEvent event) {
+    void onSaveBtnClick(ActionEvent event) throws SQLException {
+
+        int appointmentId = Integer.parseInt(appointmentIdTxt.getText());
+        String title = titleTxt.getText();
+        String description = descriptionTxt.getText();
+        String location = locationTxt.getText();
+        String type = typeTxt.getText();
+        int customerId = Integer.parseInt(customerIdTxt.getText());
+        int userId = Integer.parseInt(userIdTxt.getText());
+        Contacts contact = contactBox.getValue();
+        int contactId = contact.getContactId();
+
+        //Process Appointment Start Date/Time
+        LocalDate startDate = startDateBox.getValue();
+        String startHour = startHourBox.getValue();
+        String startMinute = startMinuteBox.getValue();
+        Timestamp appointmentStart = dateTimeFormatter.localToTimestamp(startDate, startHour, startMinute);
+        //Process Appointment End Date/Time
+        LocalDate endDate = startDateBox.getValue();
+        String endHour = startHourBox.getValue();
+        String endMinute = startMinuteBox.getValue();
+        Timestamp appointmentEnd = dateTimeFormatter.localToTimestamp(endDate, endHour, endMinute);
+
+        AppointmentsQuery.update(appointmentId, title, description, location, type, appointmentStart, appointmentEnd, customerId, userId, contactId, Users.currentUserName);
 
     }
 
@@ -97,7 +117,6 @@ public class updateAppointmentController implements Initializable {
         String startMinute = dateTimeFormatter.formatTimeMinute(appointment.getStart().toLocalDateTime());
         String endHour = dateTimeFormatter.formatTimeHour(appointment.getEnd().toLocalDateTime());
         String endMinute = dateTimeFormatter.formatTimeMinute(appointment.getEnd().toLocalDateTime());
-        System.out.println(startHour + " " + startMinute + "    " + endHour + " " + endMinute);
 
         appointmentIdTxt.setText(String.valueOf(appointment.getAppointmentId()));
         titleTxt.setText(appointment.getTitle());
