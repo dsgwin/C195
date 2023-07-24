@@ -56,7 +56,7 @@ public abstract class CustomerQuery {
 
     public static int insert(String customerName, String address, String postalCode, String phone, int divisionId, String user) throws SQLException {
 
-        Timestamp lastUpdate = helper.dateTimeFormatter.localToUTCTimestamp(LocalDateTime.now());
+        Timestamp lastUpdate = helper.dateTimeFormatter.getCurrentTimestamp();
 
         String sql = "INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Division_ID, Created_By, Last_Updated_By, Last_Update) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -75,7 +75,7 @@ public abstract class CustomerQuery {
 
     public static int update(int customerId, String customerName, String address, String postalCode, String phone, int divisionId, String userName) throws SQLException {
 
-        Timestamp lastUpdate = helper.dateTimeFormatter.localToUTCTimestamp(LocalDateTime.now());
+        Timestamp lastUpdate = helper.dateTimeFormatter.getCurrentTimestamp();
 
         String sql = "UPDATE customers SET Customer_Name=(?), Address=(?), Postal_Code=(?), Phone=(?), Division_ID=(?), Last_Updated_By=(?), Last_Update=(?) WHERE Customer_ID=(?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);

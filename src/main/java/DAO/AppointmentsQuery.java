@@ -6,7 +6,8 @@ import javafx.collections.ObservableList;
 import model.Appointments;
 
 import java.sql.*;
-import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 public abstract class AppointmentsQuery {
 
@@ -55,7 +56,7 @@ public abstract class AppointmentsQuery {
 
             String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Created_By, Last_Updated_By, Customer_ID, User_ID, Contact_ID, Last_Update) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-            Timestamp lastUpdate = helper.dateTimeFormatter.localToUTCTimestamp(LocalDateTime.now());
+            Timestamp lastUpdate = helper.dateTimeFormatter.getCurrentTimestamp();
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ps.setString(1, appointmentTitle);
@@ -78,7 +79,9 @@ public abstract class AppointmentsQuery {
 
     public static int update(int appointmentId, String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType,  Timestamp appointmentStart, Timestamp appointmentEnd, int customerId, int userId, int contactId, String userName) throws SQLException {
 
-        String sql = "UPDATE appointments SET Title=(?), Description=(?), Location=(?), Type=(?), Start=(?), End=(?), Last_Updated_By=(?), Customer_ID=(?), User_ID=(?), Contact_ID=(?) WHERE Appointment_ID=(?)";
+        String sql = "UPDATE appointments SET Title=(?), Description=(?), Location=(?), Type=(?), Start=(?), End=(?), Last_Updated_By=(?), Customer_ID=(?), User_ID=(?), Contact_ID=(?), Last_Update=(?) WHERE Appointment_ID=(?)";
+
+        Timestamp lastUpdate = helper.dateTimeFormatter.getCurrentTimestamp();
 
         PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
         ps.setString(1, appointmentTitle);
@@ -91,7 +94,8 @@ public abstract class AppointmentsQuery {
         ps.setInt(8, customerId);
         ps.setInt(9, userId);
         ps.setInt(10, contactId);
-        ps.setInt(11, appointmentId);
+        ps.setTimestamp(11, lastUpdate);
+        ps.setInt(12, appointmentId);
 
         int rowsAffected = ps.executeUpdate();
 
@@ -118,6 +122,52 @@ public abstract class AppointmentsQuery {
         int rowsAffected = ps.executeUpdate();
 
         return rowsAffected;
+    }
+
+    public static ObservableList<Appointments> getAppointmentsFiltered(Timestamp filterStart, Timestamp filterEnd) {
+
+        ObservableList<Appointments> alist = FXCollections.observableArrayList();
+
+        try{
+            String sql = "SELECT a.*, c.Contact_Name FROM appointments as a INNER JOIN contacts as c ON a.Contact_ID=c.Contact_ID WHERE Start BETWEEN (?) AND (?)";
+
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setTimestamp(1, filterStart);
+            ps.setTimestamp(2, filterEnd);
+            System.out.println(ps);
+
+            ResultSet rs = ps.executeQuery();
+
+
+
+            while (rs.next()) {
+                int appointmentId = rs.getInt("Appointment_ID");
+                String appointmentTitle = rs.getString("Title");
+                String appointmentDescription = rs.getString("Description");
+                String appointmentLocation = rs.getString("Location");
+                String appointmentType = rs.getString("Type");
+                int customerId = rs.getInt("Customer_ID");
+                int userId = rs.getInt("User_ID");
+                int contactId = rs.getInt("Contact_ID");
+                String contactName = rs.getString("Contact_Name");
+
+                //Get LocalDateTime Objects and convert to ZonedDateTime
+                Timestamp appointmentStart = rs.getTimestamp("Start");
+                Timestamp appointmentEnd = rs.getTimestamp("End");
+
+
+                Appointments A = new Appointments(appointmentId, appointmentTitle, appointmentDescription, appointmentLocation, appointmentType, appointmentStart, appointmentEnd, customerId, userId, contactId, contactName);
+                alist.add(A);
+
+            }
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+        return alist;
     }
 
 

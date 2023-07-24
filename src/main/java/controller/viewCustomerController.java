@@ -125,7 +125,7 @@ public class viewCustomerController implements Initializable {
         idCol.setSortType(TableColumn.SortType.ASCENDING);
 
 
-        customersTblView.setItems(CustomerQuery.getAllCustomers());
+
         idCol.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
@@ -133,7 +133,7 @@ public class viewCustomerController implements Initializable {
         countryCol.setCellValueFactory(new PropertyValueFactory<>("country"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         stateProvCol.setCellValueFactory(new PropertyValueFactory<>("division"));
-
+        customersTblView.setItems(CustomerQuery.getAllCustomers());
         customersTblView.getSortOrder().add(idCol);
     }
 

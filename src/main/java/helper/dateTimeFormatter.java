@@ -35,8 +35,9 @@ public abstract class dateTimeFormatter {
         return edtZdt;
     }
 
-    public static Timestamp localToUTCTimestamp(LocalDateTime dateTime) {
-        ZonedDateTime locZdt = ZonedDateTime.of(dateTime, ZoneId.systemDefault());
+    public static Timestamp getCurrentTimestamp() {
+        LocalDateTime currentTime = LocalDateTime.now();
+        ZonedDateTime locZdt = ZonedDateTime.of(currentTime, ZoneId.systemDefault());
         ZonedDateTime utcZdt = locZdt.withZoneSameInstant(ZoneOffset.UTC);
         Timestamp timestamp = Timestamp.valueOf(utcZdt.toLocalDateTime());
         return timestamp;
@@ -54,4 +55,13 @@ public abstract class dateTimeFormatter {
 
         return customFormatter.format(date);
     }
+
+    public static String formatDate(LocalDate date) {
+
+        DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        return customFormatter.format(date);
+    }
+
+
 }

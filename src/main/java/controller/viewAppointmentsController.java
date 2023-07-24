@@ -1,7 +1,8 @@
 package controller;
 
 import DAO.AppointmentsQuery;
-import DAO.CustomerQuery;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,19 +11,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
 import model.Appointments;
 import model.Contacts;
-import model.Customers;
 
 import java.net.URL;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class viewAppointmentsController  implements Initializable {
 
     Stage stage;
+
+    ObservableList<Appointments> allAppointments = FXCollections.observableArrayList();
 
     @FXML
     private TableView<Appointments> tblView;
@@ -58,21 +63,69 @@ public class viewAppointmentsController  implements Initializable {
     private TableColumn<Appointments, Integer> userIdCol;
 
     @FXML
-    private Label errorPaneTxt;
+    private DatePicker filterDate;
+
+    @FXML
+    private RadioButton allRBtn;
 
     @FXML
     private RadioButton weeklyRBtn;
 
     @FXML
-    private ToggleGroup weekMonth;
-
-    @FXML
     private RadioButton monthlyRBtn;
 
     @FXML
-    void monthlyRBtnClick(ActionEvent event) {
+    void allRBtnSelected(ActionEvent event) {
+        filterDate.setDisable(true);
+
 
     }
+
+    @FXML
+    void filterDateChanged(InputMethodEvent event) {
+        if(weeklyRBtn.isSelected()) {
+            Timestamp filterStart = helper.dateTimeFormatter.localToTimestamp(LocalDateTime.from(filterDate.getValue()));
+            Timestamp filterEnd = helper.dateTimeFormatter.localToTimestamp(LocalDateTime.from(filterDate.getValue().plusWeeks(1)));
+            ObservableList<Appointments> filteredAppointments = AppointmentsQuery.getAppointmentsFiltered(filterStart, filterEnd);
+            tblView.setItems(filteredAppointments);
+            tblView.refresh();
+        } else if (monthlyRBtn.isSelected()) {
+
+            Timestamp filterStart = helper.dateTimeFormatter.localToTimestamp(LocalDateTime.from(filterDate.getValue()));
+            Timestamp filterEnd = helper.dateTimeFormatter.localToTimestamp(LocalDateTime.from(filterDate.getValue().plusMonths(1)));
+            ObservableList<Appointments> filteredAppointments = AppointmentsQuery.getAppointmentsFiltered(filterStart, filterEnd);
+            tblView.setItems(filteredAppointments);
+            tblView.refresh();
+        }
+
+    }
+
+    @FXML
+    void monthlyRBtnSelected(ActionEvent event) {
+        filterDate.setDisable(false);
+        Timestamp filterStart = helper.dateTimeFormatter.localToTimestamp(LocalDateTime.from(filterDate.getValue()));
+        Timestamp filterEnd = helper.dateTimeFormatter.localToTimestamp(LocalDateTime.from(filterDate.getValue().plusMonths(1)));
+        ObservableList<Appointments> filteredAppointments = AppointmentsQuery.getAppointmentsFiltered(filterStart, filterEnd);
+        tblView.setItems(filteredAppointments);
+        tblView.refresh();
+
+    }
+
+
+    @FXML
+    void weeklyRBtnSelected(ActionEvent event) {
+
+        filterDate.setDisable(false);
+        Timestamp filterStart = helper.dateTimeFormatter.localToTimestamp(LocalDateTime.from(filterDate.getValue()));
+        Timestamp filterEnd = helper.dateTimeFormatter.localToTimestamp(LocalDateTime.from(filterDate.getValue().plusWeeks(1)));
+        ObservableList<Appointments> filteredAppointments = AppointmentsQuery.getAppointmentsFiltered(filterStart, filterEnd);
+        tblView.setItems(filteredAppointments);
+        tblView.refresh();
+
+
+
+    }
+
 
     @FXML
     void onAddBtnClick(ActionEvent event) {
@@ -145,16 +198,13 @@ public class viewAppointmentsController  implements Initializable {
 
     }
 
-    @FXML
-    void weeklyRBtnClick(ActionEvent event) {
-
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         idCol.setSortType(TableColumn.SortType.ASCENDING);
 
-        tblView.setItems(AppointmentsQuery.getAllAppointments());
+        allAppointments.addAll(AppointmentsQuery.getAllAppointments());
+
+        tblView.setItems(allAppointments);
         idCol.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -167,6 +217,9 @@ public class viewAppointmentsController  implements Initializable {
         userIdCol.setCellValueFactory(new PropertyValueFactory<>("userId"));
 
         tblView.getSortOrder().add(idCol);
+
+        LocalDate today = LocalDateTime.now().toLocalDate();
+        filterDate.setValue(today);
 
 
 

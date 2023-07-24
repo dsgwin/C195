@@ -1,12 +1,15 @@
 package controller;
 
 import DAO.UsersQuery;
+import helper.LogInterface;
+import helper.dateTimeFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.ZoneId;
@@ -48,7 +51,6 @@ public class loginController implements Initializable {
     @FXML
     private Label errorLbl;
 
-
     @FXML
     void exitBtnClicked(ActionEvent event) {
 
@@ -64,9 +66,18 @@ public class loginController implements Initializable {
 
         if(!username.isEmpty() || !password.isEmpty()) {
                 if(UsersQuery.userLoginQuery(username, password)) {
-                        helper.controllerHelper.loadMainMenu(event);
+
+                    // Lambda #1 - Create log message at failed login
+                    LogInterface logMessage = s -> dateTimeFormatter.getCurrentTimestamp() + ": " + s + " for user \"" + username+ "\"!";
+                    logWrite(logMessage.getLogMessage("Successful login attempt"));
+
+                    helper.controllerHelper.loadMainMenu(event);
                     }
                 else {
+                    // Lambda #2 - Create log message at failed login
+                        LogInterface logMessage = s -> dateTimeFormatter.getCurrentTimestamp() + ": " + s + " for user \"" + username + "\"!";
+                        logWrite(logMessage.getLogMessage("Failed login attempt"));
+
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle(rb.getString("Failed"));
                         alert.setContentText(rb.getString("TryAgain"));
@@ -103,6 +114,16 @@ public class loginController implements Initializable {
 
         zoneIdLbl.setText(String.valueOf(zoneId));
 
+    }
+
+    private void logWrite(String logMessage){
+        try {
+            FileWriter myWriter = new FileWriter("log_activity.txt", true);
+            myWriter.append(logMessage+"\n");
+            myWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
