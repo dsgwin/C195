@@ -20,6 +20,8 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -77,22 +79,35 @@ public class viewAppointmentsController  implements Initializable {
     @FXML
     void allRBtnSelected(ActionEvent event) {
         filterDate.setDisable(true);
+        tblView.setItems(AppointmentsQuery.getAllAppointments());
+        tblView.refresh();
 
 
     }
 
     @FXML
-    void filterDateChanged(InputMethodEvent event) {
+    void filterDateChanged(ActionEvent event) {
+        // Get Local Date from Date Selector
+        LocalDate startDate = filterDate.getValue();
+        LocalDateTime startDateTime = LocalDateTime.of(startDate, LocalTime.of(00,00));
+
+
         if(weeklyRBtn.isSelected()) {
-            Timestamp filterStart = helper.dateTimeFormatter.localToTimestamp(LocalDateTime.from(filterDate.getValue()));
-            Timestamp filterEnd = helper.dateTimeFormatter.localToTimestamp(LocalDateTime.from(filterDate.getValue().plusWeeks(1)));
+            // Add 1 week for weekly filter endDate
+            LocalDateTime endDateTime = LocalDateTime.of(startDate.plusWeeks(1), LocalTime.of(23,59));
+            // Convert to UTC Zoned Date for SQL Query
+            ZonedDateTime filterStart = helper.dateTimeFormatter.localToUTC(startDateTime);
+            ZonedDateTime filterEnd = helper.dateTimeFormatter.localToUTC(endDateTime);
             ObservableList<Appointments> filteredAppointments = AppointmentsQuery.getAppointmentsFiltered(filterStart, filterEnd);
             tblView.setItems(filteredAppointments);
             tblView.refresh();
-        } else if (monthlyRBtn.isSelected()) {
 
-            Timestamp filterStart = helper.dateTimeFormatter.localToTimestamp(LocalDateTime.from(filterDate.getValue()));
-            Timestamp filterEnd = helper.dateTimeFormatter.localToTimestamp(LocalDateTime.from(filterDate.getValue().plusMonths(1)));
+        } else if (monthlyRBtn.isSelected()) {
+            // Add 1 week for weekly filter endDate
+            LocalDateTime endDateTime = LocalDateTime.of(startDate.plusMonths(1), LocalTime.of(23,59));
+            // Convert to UTC Zoned Date for SQL Query
+            ZonedDateTime filterStart = helper.dateTimeFormatter.localToUTC(startDateTime);
+            ZonedDateTime filterEnd = helper.dateTimeFormatter.localToUTC(endDateTime);
             ObservableList<Appointments> filteredAppointments = AppointmentsQuery.getAppointmentsFiltered(filterStart, filterEnd);
             tblView.setItems(filteredAppointments);
             tblView.refresh();
@@ -103,8 +118,13 @@ public class viewAppointmentsController  implements Initializable {
     @FXML
     void monthlyRBtnSelected(ActionEvent event) {
         filterDate.setDisable(false);
-        Timestamp filterStart = helper.dateTimeFormatter.localToTimestamp(LocalDateTime.from(filterDate.getValue()));
-        Timestamp filterEnd = helper.dateTimeFormatter.localToTimestamp(LocalDateTime.from(filterDate.getValue().plusMonths(1)));
+        // Get Local Date from Date Selector and add 1 month for monthly filter endDate
+        LocalDate startDate = filterDate.getValue();
+        LocalDateTime startDateTime = LocalDateTime.of(startDate, LocalTime.of(00,00));
+        LocalDateTime endDateTime = LocalDateTime.of(startDate.plusMonths(1), LocalTime.of(23,59));
+        // Convert to UTC Zoned Date for SQL Query
+        ZonedDateTime filterStart = helper.dateTimeFormatter.localToUTC(startDateTime);
+        ZonedDateTime filterEnd = helper.dateTimeFormatter.localToUTC(endDateTime);
         ObservableList<Appointments> filteredAppointments = AppointmentsQuery.getAppointmentsFiltered(filterStart, filterEnd);
         tblView.setItems(filteredAppointments);
         tblView.refresh();
@@ -116,8 +136,13 @@ public class viewAppointmentsController  implements Initializable {
     void weeklyRBtnSelected(ActionEvent event) {
 
         filterDate.setDisable(false);
-        Timestamp filterStart = helper.dateTimeFormatter.localToTimestamp(LocalDateTime.from(filterDate.getValue()));
-        Timestamp filterEnd = helper.dateTimeFormatter.localToTimestamp(LocalDateTime.from(filterDate.getValue().plusWeeks(1)));
+        // Get Local Date from Date Selector and add 1 week for weekly filter endDate
+        LocalDate startDate = filterDate.getValue();
+        LocalDateTime startDateTime = LocalDateTime.of(startDate, LocalTime.of(00,00));
+        LocalDateTime endDateTime = LocalDateTime.of(startDate.plusWeeks(1), LocalTime.of(23,59));
+        // Convert to UTC Zoned Date for SQL Query
+        ZonedDateTime filterStart = helper.dateTimeFormatter.localToUTC(startDateTime);
+        ZonedDateTime filterEnd = helper.dateTimeFormatter.localToUTC(endDateTime);
         ObservableList<Appointments> filteredAppointments = AppointmentsQuery.getAppointmentsFiltered(filterStart, filterEnd);
         tblView.setItems(filteredAppointments);
         tblView.refresh();
