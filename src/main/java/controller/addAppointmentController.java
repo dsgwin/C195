@@ -88,31 +88,62 @@ public class addAppointmentController implements Initializable {
 
     @FXML
     void onSaveBtnClick(ActionEvent event) throws SQLException {
-        String title = titleTxt.getText();
-        String description = descriptionTxt.getText();
-        String location = locationTxt.getText();
-        String type = typeTxt.getText();
-        int customerId = Integer.parseInt(customerIdTxt.getText());
-        int userId = Integer.parseInt(userIdTxt.getText());
-        Contacts contact = contactBox.getValue();
-        int contactId = contact.getContactId();
 
-        //Process Appointment Start Date/Time
-        LocalDate startDate = startDateBox.getValue();
-        String startHour = startHourBox.getValue();
-        String startMinute = startMinuteBox.getValue();
-        Timestamp appointmentStart = dateTimeFormatter.localToTimestamp(startDate, startHour, startMinute);
-        //Process Appointment End Date/Time
-        LocalDate endDate = endDateBox.getValue();
-        String endHour = endHourBox.getValue();
-        String endMinute = endMinuteBox.getValue();
-        Timestamp appointmentEnd = dateTimeFormatter.localToTimestamp(endDate, endHour, endMinute);
-        AppointmentsQuery.insert(title, description, location, type, appointmentStart, appointmentEnd, customerId, userId, contactId, Users.currentUserName);
+        String alertText = helper.inputCheck.appointmentCheck(customerIdTxt.getText(), userIdTxt.getText());
+        try {
+            String title = titleTxt.getText();
+            String description = descriptionTxt.getText();
+            String location = locationTxt.getText();
+            String type = typeTxt.getText();
+            int customerId = Integer.parseInt(customerIdTxt.getText());
+            int userId = Integer.parseInt(userIdTxt.getText());
+            Contacts contact = contactBox.getValue();
+            int contactId = contact.getContactId();
 
-        helper.controllerHelper.loadAppointmentView(event);
+            //Process Appointment Start Date/Time
+            LocalDate startDate = startDateBox.getValue();
+            String startHour = startHourBox.getValue();
+            String startMinute = startMinuteBox.getValue();
+            Timestamp appointmentStart = dateTimeFormatter.localToTimestamp(startDate, startHour, startMinute);
+            //Process Appointment End Date/Time
+            LocalDate endDate = endDateBox.getValue();
+            String endHour = endHourBox.getValue();
+            String endMinute = endMinuteBox.getValue();
+            Timestamp appointmentEnd = dateTimeFormatter.localToTimestamp(endDate, endHour, endMinute);
+            LocalDateTime localStart = LocalDateTime.of(startDate, LocalTime.of(Integer.parseInt(startHour), Integer.parseInt(startMinute)));
+            LocalDateTime localEnd = LocalDateTime.of(startDate, LocalTime.of(Integer.parseInt(startHour), Integer.parseInt(startMinute)));
+
+            //Check that appointment is within Business Hours
+            if (!(helper.inputCheck.businessHoursCheck(localStart, localEnd))) {
+                alertText = "Appointment must be scheduled within Business Hours of 8:00am EST - 10:00pm EST";
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Adding Appointment");
+                alert.setContentText(alertText);
+                alert.showAndWait();
+
+            }
+            //Check Overlap
+            else if (helper.inputCheck.overlapCheck(customerId, localStart, localEnd)) {
+                alertText = "Appointment time conflicts with existing customer appointment. Please modify.";
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Adding Appointment");
+                alert.setContentText(alertText);
+                alert.showAndWait();
+
+            } else {
+                AppointmentsQuery.insert(title, description, location, type, appointmentStart, appointmentEnd, customerId, userId, contactId, Users.currentUserName);
+                helper.controllerHelper.loadAppointmentView(event);
+            }
+        }
+
+        catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Adding Appointment");
+            alert.setContentText(alertText);
+            alert.showAndWait();
+            }
 
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb){
