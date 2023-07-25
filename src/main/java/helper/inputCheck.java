@@ -4,8 +4,7 @@ import DAO.AppointmentsQuery;
 import javafx.collections.ObservableList;
 import model.Appointments;
 
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 
 public abstract class inputCheck {
 
@@ -51,6 +50,8 @@ public abstract class inputCheck {
         LocalTime businessOpen = LocalTime.of(8,00);
         LocalTime businessClose = LocalTime.of(22, 00);
 
+        ZonedDateTime businessOpenEDT = ZonedDateTime.of(LocalDate.now(), businessOpen, ZoneId.of("America/New_York"));
+
         LocalTime appointmentStartTimeEDT = helper.dateTimeFormatter.localToEDT(appointmentStart).toLocalTime();
         LocalTime appointmentEndTimeEDT = helper.dateTimeFormatter.localToEDT(appointmentEnd).toLocalTime();
 
@@ -60,6 +61,16 @@ public abstract class inputCheck {
         else{
             betweenBusinessHours = false;
         }
+
+
+        System.out.println("Begin tests: ");
+        System.out.println(betweenBusinessHours);
+        System.out.println(businessOpen);
+        System.out.println(businessOpenEDT);
+        System.out.println(businessClose);
+        System.out.println(appointmentStartTimeEDT);
+        System.out.println(appointmentEnd);
+
 
         return betweenBusinessHours;
     }
