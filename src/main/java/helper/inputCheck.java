@@ -30,25 +30,32 @@ public abstract class inputCheck {
         return alertText;
     }
 
-    public static Boolean overlapCheck(int customerId, LocalDateTime startTime, LocalDateTime endTime){
+    public static int overlapCheck(int customerId, LocalDateTime newStartTime, LocalDateTime newEndTime){
 
-        Boolean overlap = false;
+        int overlap = 0;
         ObservableList<Appointments> appointments = AppointmentsQuery.getCustomerAppointments(customerId);
         for(Appointments appointment : appointments){
             LocalDateTime appointmentStart = appointment.getStart().toLocalDateTime();
             LocalDateTime appointmentEnd = appointment.getEnd().toLocalDateTime();
 
-            if(startTime.isBefore(appointmentEnd) || endTime.isAfter(appointmentStart)){
-                overlap = true;
+
+
+            if((newStartTime.isAfter(appointmentStart) && newStartTime.isBefore(appointmentEnd)) ||
+                    (newEndTime.isAfter(appointmentStart) && newEndTime.isBefore(appointmentEnd)))
+            {
+                overlap++;
             }
+
+            System.out.println(overlap);
+
         }
         return overlap;
     }
 
     public static Boolean businessHoursCheck(LocalDateTime appointmentStart, LocalDateTime appointmentEnd){
         Boolean betweenBusinessHours = false;
-        LocalTime businessOpen = LocalTime.of(8,00);
-        LocalTime businessClose = LocalTime.of(22, 00);
+        LocalTime businessOpen = LocalTime.of(7,59);
+        LocalTime businessClose = LocalTime.of(22, 01);
 
         ZonedDateTime businessOpenEDT = ZonedDateTime.of(LocalDate.now(), businessOpen, ZoneId.of("America/New_York"));
 
@@ -61,16 +68,6 @@ public abstract class inputCheck {
         else{
             betweenBusinessHours = false;
         }
-
-
-        System.out.println("Begin tests: ");
-        System.out.println(betweenBusinessHours);
-        System.out.println(businessOpen);
-        System.out.println(businessOpenEDT);
-        System.out.println(businessClose);
-        System.out.println(appointmentStartTimeEDT);
-        System.out.println(appointmentEnd);
-
 
         return betweenBusinessHours;
     }

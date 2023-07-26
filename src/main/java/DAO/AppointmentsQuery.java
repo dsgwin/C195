@@ -6,8 +6,6 @@ import javafx.collections.ObservableList;
 import model.Appointments;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.ZonedDateTime;
 
 public abstract class AppointmentsQuery {

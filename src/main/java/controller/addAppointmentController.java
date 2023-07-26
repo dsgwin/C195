@@ -100,6 +100,8 @@ public class addAppointmentController implements Initializable {
             Contacts contact = contactBox.getValue();
             int contactId = contact.getContactId();
 
+
+
             //Process Appointment Start Date/Time
             LocalDate startDate = startDateBox.getValue();
             String startHour = startHourBox.getValue();
@@ -111,26 +113,30 @@ public class addAppointmentController implements Initializable {
             String endMinute = endMinuteBox.getValue();
             Timestamp appointmentEnd = dateTimeFormatter.localToTimestamp(endDate, endHour, endMinute);
             LocalDateTime localStart = LocalDateTime.of(startDate, LocalTime.of(Integer.parseInt(startHour), Integer.parseInt(startMinute)));
-            LocalDateTime localEnd = LocalDateTime.of(startDate, LocalTime.of(Integer.parseInt(startHour), Integer.parseInt(startMinute)));
+            LocalDateTime localEnd = LocalDateTime.of(endDate, LocalTime.of(Integer.parseInt(endHour), Integer.parseInt(endMinute)));
+            int overlapCheck = helper.inputCheck.overlapCheck(customerId, localStart, localEnd);
+            Boolean businessHour = helper.inputCheck.businessHoursCheck(localStart, localEnd);
 
             //Check that appointment is within Business Hours
-            if (!(helper.inputCheck.businessHoursCheck(localStart, localEnd))) {
+            if (!businessHour) {
                 alertText = "Appointment must be scheduled within Business Hours of 8:00am EST - 10:00pm EST";
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Adding Appointment");
                 alert.setContentText(alertText);
                 alert.showAndWait();
-
             }
+
             //Check Overlap
-            else if (helper.inputCheck.overlapCheck(customerId, localStart, localEnd)) {
+            else if (overlapCheck > 0){
                 alertText = "Appointment time conflicts with existing customer appointment. Please modify.";
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Adding Appointment");
                 alert.setContentText(alertText);
                 alert.showAndWait();
+                System.out.println("Overlap Check: " + overlapCheck);
+            }
 
-            } else {
+            if (businessHour == true && overlapCheck == 0 ) {
                 AppointmentsQuery.insert(title, description, location, type, appointmentStart, appointmentEnd, customerId, userId, contactId, Users.currentUserName);
                 helper.controllerHelper.loadAppointmentView(event);
             }
