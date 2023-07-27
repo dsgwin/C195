@@ -30,7 +30,7 @@ public abstract class inputCheck {
         return alertText;
     }
 
-    public static int overlapCheck(int customerId, LocalDateTime newStartTime, LocalDateTime newEndTime){
+    public static int overlapCheck(int customerId, int appointmentId, LocalDateTime newStartTime, LocalDateTime newEndTime){
 
         int overlap = 0;
         ObservableList<Appointments> appointments = AppointmentsQuery.getCustomerAppointments(customerId);
@@ -38,6 +38,7 @@ public abstract class inputCheck {
             LocalDateTime appointmentStart = appointment.getStart().toLocalDateTime();
             LocalDateTime appointmentEnd = appointment.getEnd().toLocalDateTime();
 
+            if(appointmentId != appointment.getAppointmentId())
             if((newStartTime.isAfter(appointmentStart) && newStartTime.isBefore(appointmentEnd)) ||
                     (newEndTime.isAfter(appointmentStart) && newEndTime.isBefore(appointmentEnd)))
             {

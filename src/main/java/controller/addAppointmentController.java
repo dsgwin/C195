@@ -114,7 +114,7 @@ public class addAppointmentController implements Initializable {
             Timestamp appointmentEnd = dateTimeFormatter.localToTimestamp(endDate, endHour, endMinute);
             LocalDateTime localStart = LocalDateTime.of(startDate, LocalTime.of(Integer.parseInt(startHour), Integer.parseInt(startMinute)));
             LocalDateTime localEnd = LocalDateTime.of(endDate, LocalTime.of(Integer.parseInt(endHour), Integer.parseInt(endMinute)));
-            int overlapCheck = helper.inputCheck.overlapCheck(customerId, localStart, localEnd);
+            int overlapCheck = helper.inputCheck.overlapCheck(customerId, -1, localStart, localEnd);
             Boolean businessHour = helper.inputCheck.businessHoursCheck(localStart, localEnd);
 
             //Check that appointment is within Business Hours

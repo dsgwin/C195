@@ -173,7 +173,7 @@ public abstract class AppointmentsQuery {
         ObservableList<Appointments> alist = FXCollections.observableArrayList();
 
         try {
-            String sql = "SELECT a.*, c.Contact_Name FROM appointments as a INNER JOIN contacts as c ON a.Contact_ID=c.Contact_ID WHERE User_ID=(?) AND Start BETWEEN from_unixtime(?) and from_unixtime(?)";
+            String sql = "SELECT a.*, c.Contact_Name FROM appointments as a INNER JOIN contacts as c ON a.Contact_ID=c.Contact_ID WHERE User_ID=? AND Start BETWEEN ? and ?";
 
             PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
             ps.setInt(1, user);

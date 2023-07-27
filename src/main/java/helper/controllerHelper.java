@@ -1,6 +1,8 @@
 package helper;
 
+import DAO.AppointmentsQuery;
 import controller.*;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,7 +11,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import model.Appointments;
+import model.Users;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 public abstract class controllerHelper {
@@ -181,6 +187,41 @@ public abstract class controllerHelper {
 
         }
 
+    }
+
+    public static void upcomingAppointmentCheck(int userId){
+        System.out.println("Begin Appointment Check");
+        // Get current time
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        // Add 15 minutes to current time
+        LocalDateTime currentPlusFifteen = LocalDateTime.now().plusMinutes(15);
+        // Convert times to Timestamp for SQL Query
+        Timestamp utcStartRange = helper.dateTimeFormatter.localToTimestamp(currentDateTime);
+        Timestamp utcEndRange = helper.dateTimeFormatter.localToTimestamp(currentPlusFifteen);
+        //Get User Appointments within 15 minutes
+        ObservableList<Appointments> appointmentList = AppointmentsQuery.getUserAppointments(userId, utcStartRange, utcEndRange);
+        for (Appointments appointment : appointmentList){
+            System.out.println(appointment.getAppointmentId());
+        }
+        if (appointmentList.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Upcoming Appointments");
+            alert.setContentText("No Upcoming Appointments!");
+            alert.showAndWait();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Upcoming Appointments");
+            StringBuilder alertText = new StringBuilder();
+            alertText.append("Upcoming appointments: \n");
+            for (Appointments appointment : appointmentList) {
+                int appointmentId = appointment.getAppointmentId();
+                Timestamp startTime = appointment.getStart();
+                alertText.append("Appointment ID: " + appointmentId + " -- Start Time: " + startTime + "\n");
+            }
+            alert.setContentText(alertText.toString());
+            alert.showAndWait();
+        }
     }
 
 }
