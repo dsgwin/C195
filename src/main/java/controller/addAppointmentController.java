@@ -133,7 +133,6 @@ public class addAppointmentController implements Initializable {
                 alert.setTitle("Error Adding Appointment");
                 alert.setContentText(alertText);
                 alert.showAndWait();
-                System.out.println("Overlap Check: " + overlapCheck);
             }
 
             if (businessHour == true && overlapCheck == 0 ) {

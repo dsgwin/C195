@@ -156,4 +156,31 @@ public abstract class controllerHelper {
 
     }
 
+    public static void loadReportMenu(Event event){
+
+        Stage stage;
+
+        try{
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(controllerHelper.class.getResource("/MainApplication/ReportMenu.fxml"));
+            loader.load();
+
+            reportMenuController Controller = loader.getController();
+
+            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.centerOnScreen();
+            stage.show();
+
+        }
+        catch (Exception e) {
+
+            System.out.println(e);
+
+        }
+
+    }
+
 }

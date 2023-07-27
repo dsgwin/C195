@@ -140,7 +140,6 @@ public class updateAppointmentController implements Initializable {
             }
         }
 
-
         catch(Exception e){
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Adding Appointment");

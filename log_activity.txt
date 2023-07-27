@@ -48,3 +48,7 @@
 2023-07-26 20:27:52.612187: Successful login attempt for user "admin"!
 2023-07-26 22:22:41.34555: Successful login attempt for user "admin"!
 2023-07-26 22:32:52.58194: Successful login attempt for user "admin"!
+2023-07-27 12:50:50.179724: Failed login attempt for user "admin"!
+2023-07-27 12:50:55.722508: Successful login attempt for user "admin"!
+2023-07-27 12:52:09.005837: Successful login attempt for user "admin"!
+2023-07-27 12:53:09.083954: Successful login attempt for user "admin"!

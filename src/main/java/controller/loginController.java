@@ -67,14 +67,14 @@ public class loginController implements Initializable {
         if(!username.isEmpty() || !password.isEmpty()) {
                 if(UsersQuery.userLoginQuery(username, password)) {
 
-                    // Lambda #1 - Create log message at failed login
+                    // Lambda #1 - Create log message at successful login
                     LogInterface logMessage = s -> dateTimeFormatter.getCurrentTimestamp() + ": " + s + " for user \"" + username+ "\"!";
                     logWrite(logMessage.getLogMessage("Successful login attempt"));
 
                     helper.controllerHelper.loadMainMenu(event);
                     }
                 else {
-                    // Lambda #2 - Create log message at failed login
+                    // Lambda #1 - Create log message at failed login
                         LogInterface logMessage = s -> dateTimeFormatter.getCurrentTimestamp() + ": " + s + " for user \"" + username + "\"!";
                         logWrite(logMessage.getLogMessage("Failed login attempt"));
 
