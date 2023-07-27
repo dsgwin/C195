@@ -38,15 +38,11 @@ public abstract class inputCheck {
             LocalDateTime appointmentStart = appointment.getStart().toLocalDateTime();
             LocalDateTime appointmentEnd = appointment.getEnd().toLocalDateTime();
 
-
-
             if((newStartTime.isAfter(appointmentStart) && newStartTime.isBefore(appointmentEnd)) ||
                     (newEndTime.isAfter(appointmentStart) && newEndTime.isBefore(appointmentEnd)))
             {
                 overlap++;
             }
-
-            System.out.println(overlap);
 
         }
         return overlap;

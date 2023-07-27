@@ -31,4 +31,9 @@ public class mainMenuController {
 
     }
 
+    @FXML
+    void onReportBtnClick(ActionEvent event) {
+
+    }
+
 }

@@ -63,9 +63,6 @@ public abstract class UsersQuery {
                 loginResult = false;
             }
         }
-
-
-
         return loginResult;
     }
 }
