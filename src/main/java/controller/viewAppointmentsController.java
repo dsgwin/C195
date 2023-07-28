@@ -68,9 +68,6 @@ public class viewAppointmentsController  implements Initializable {
     private DatePicker filterDate;
 
     @FXML
-    private RadioButton allRBtn;
-
-    @FXML
     private RadioButton weeklyRBtn;
 
     @FXML
