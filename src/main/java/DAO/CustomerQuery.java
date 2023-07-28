@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import model.Customers;
 
 import java.sql.*;
-import java.time.LocalDateTime;
 
 public abstract class CustomerQuery {
 

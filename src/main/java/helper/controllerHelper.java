@@ -12,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import model.Appointments;
-import model.Users;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

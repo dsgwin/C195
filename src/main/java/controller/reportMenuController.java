@@ -26,7 +26,7 @@ public class reportMenuController implements Initializable {
     private TextArea txtField;
 
     @FXML
-    void contactScheduleBtnClick(ActionEvent event) {
+    void contactScheduleBtnClick(ActionEvent event){
         StringBuilder displayString = new StringBuilder();
         reportHeader.setText("Contact Schedule");
 

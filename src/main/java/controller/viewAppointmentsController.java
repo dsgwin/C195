@@ -11,7 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
 import model.Appointments;
 import model.Contacts;
@@ -147,7 +146,6 @@ public class viewAppointmentsController  implements Initializable {
 
 
     }
-
 
     @FXML
     void onAddBtnClick(ActionEvent event) {

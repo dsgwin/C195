@@ -17,10 +17,6 @@ public class FirstLevelDivisions {
         return divisionId;
     }
 
-    public String getDivisionName() {
-        return divisionName;
-    }
-
     public int getCountryId() {
         return countryId;
     }
