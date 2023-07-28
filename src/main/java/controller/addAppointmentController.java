@@ -25,12 +25,6 @@ public class addAppointmentController implements Initializable {
     ObservableList<String> minutes = FXCollections.observableArrayList();
 
     @FXML
-    private TextField appointmentIdTxt;
-
-    @FXML
-    private Button cancelBtn;
-
-    @FXML
     private ComboBox<Contacts> contactBox;
 
     @FXML
@@ -57,9 +51,6 @@ public class addAppointmentController implements Initializable {
 
     @FXML
     private TextField locationTxt;
-
-    @FXML
-    private Button saveBtn;
 
     @FXML
     private DatePicker startDateBox;

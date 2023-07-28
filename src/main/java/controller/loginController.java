@@ -71,7 +71,6 @@ public class loginController implements Initializable {
                     // Lambda #1 - Create log message at successful login
                     LogInterface logMessage = s -> dateTimeFormatter.getCurrentTimestamp() + ": " + s + " for user \"" + username+ "\"!";
                     logWrite(logMessage.getLogMessage("Successful login attempt"));
-                    System.out.println(Users.currentUserId);
 
                     helper.controllerHelper.upcomingAppointmentCheck(Users.currentUserId);
 

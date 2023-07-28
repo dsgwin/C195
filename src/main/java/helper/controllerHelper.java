@@ -190,7 +190,6 @@ public abstract class controllerHelper {
     }
 
     public static void upcomingAppointmentCheck(int userId){
-        System.out.println("Begin Appointment Check");
         // Get current time
         LocalDateTime currentDateTime = LocalDateTime.now();
         // Add 15 minutes to current time

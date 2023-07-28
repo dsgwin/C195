@@ -57,12 +57,4 @@ public abstract class dateTimeFormatter {
         return customFormatter.format(date);
     }
 
-    public static String formatDate(LocalDate date) {
-
-        DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-        return customFormatter.format(date);
-    }
-
-
 }
