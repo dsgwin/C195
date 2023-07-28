@@ -107,6 +107,8 @@ public class addAppointmentController implements Initializable {
             LocalDateTime localEnd = LocalDateTime.of(endDate, LocalTime.of(Integer.parseInt(endHour), Integer.parseInt(endMinute)));
             int overlapCheck = helper.inputCheck.overlapCheck(customerId, -1, localStart, localEnd);
             Boolean businessHour = helper.inputCheck.businessHoursCheck(localStart, localEnd);
+            Boolean customerCheck = helper.inputCheck.customerCheck(customerId);
+            Boolean userCheck = helper.inputCheck.userCheck(userId);
 
             //Check that appointment is within Business Hours
             if (!businessHour) {
@@ -125,8 +127,22 @@ public class addAppointmentController implements Initializable {
                 alert.setContentText(alertText);
                 alert.showAndWait();
             }
+            else if (!customerCheck){
+                alertText = "Customer ID does not exist. Please enter a valid Customer ID.";
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Adding Appointment");
+                alert.setContentText(alertText);
+                alert.showAndWait();
+            }
+            else if (!userCheck){
+                alertText = "User ID does not exist. Please enter a valid User ID.";
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Adding Appointment");
+                alert.setContentText(alertText);
+                alert.showAndWait();
+            }
 
-            if (businessHour == true && overlapCheck == 0 ) {
+            if (businessHour == true && overlapCheck == 0 && customerCheck == true && userCheck == true) {
                 AppointmentsQuery.insert(title, description, location, type, appointmentStart, appointmentEnd, customerId, userId, contactId, Users.currentUserName);
                 helper.controllerHelper.loadAppointmentView(event);
             }

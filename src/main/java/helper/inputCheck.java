@@ -1,8 +1,12 @@
 package helper;
 
 import DAO.AppointmentsQuery;
+import DAO.CustomerQuery;
+import DAO.UsersQuery;
 import javafx.collections.ObservableList;
 import model.Appointments;
+import model.Customers;
+import model.Users;
 
 import java.time.*;
 
@@ -28,6 +32,28 @@ public abstract class inputCheck {
         }
 
         return alertText;
+    }
+
+    public static Boolean customerCheck(int customerId){
+        Boolean customerExists = false;
+        ObservableList<Customers> customerList = CustomerQuery.getAllCustomers();
+        for(Customers customer : customerList){
+            if(customer.getCustomerId() == customerId){
+                customerExists=true;
+            }
+        }
+        return  customerExists;
+    }
+
+    public static Boolean userCheck(int userId){
+        Boolean userExists = false;
+        ObservableList<Users> userList = UsersQuery.getAllUsers();
+        for(Users user : userList){
+            if(user.getUserId() == userId){
+                userExists=true;
+            }
+        }
+        return  userExists;
     }
 
     public static int overlapCheck(int customerId, int appointmentId, LocalDateTime newStartTime, LocalDateTime newEndTime){

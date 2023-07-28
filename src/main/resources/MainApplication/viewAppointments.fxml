@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="471.0" prefWidth="1181.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.viewAppointmentsController">
+<AnchorPane prefHeight="471.0" prefWidth="1181.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.viewAppointmentsController">
    <children>
       <Label layoutX="14.0" layoutY="6.0" text="Appointments">
          <font>
