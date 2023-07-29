@@ -15,7 +15,9 @@ import model.Appointments;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Locale;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 /**
  * Class containing functions to help controllers move from one view to another.
@@ -27,9 +29,12 @@ public abstract class controllerHelper {
      * @param event
      */
     public static void applicationExit(Event event){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you would like to exit the application?");
+
+        ResourceBundle rb = ResourceBundle.getBundle("MainApplication/Nat", Locale.getDefault());
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, rb.getString("ExitApplication"));
 
         Optional<ButtonType> result = alert.showAndWait();
+
         if(result.isPresent() && result.get() == ButtonType.OK) {
             JDBC.closeConnection();
             System.exit(0);
