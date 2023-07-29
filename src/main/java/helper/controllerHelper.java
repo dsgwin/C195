@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 /**
  * Class containing functions to help controllers move from one view to another.
  */
-public abstract class controllerHelper {
+public class controllerHelper {
 
     /**
      * Exits the application and provides a confirmation alert.

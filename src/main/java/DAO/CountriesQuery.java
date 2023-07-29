@@ -12,7 +12,7 @@ import java.sql.SQLException;
 /**
  * Class that manages all SQL queries related to Countries
  */
-public abstract class CountriesQuery {
+public class CountriesQuery {
 
     /**
      * Gets all countries from SQL Database

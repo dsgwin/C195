@@ -13,7 +13,7 @@ import java.sql.SQLException;
 /**
  * Class that manages all SQL queries related to First Level Divisions
  */
-public abstract class FirstLevelDivisionsQuery {
+public class FirstLevelDivisionsQuery {
 
     /**
      * Gets all First Level Divisions from Database

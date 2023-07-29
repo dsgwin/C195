@@ -11,7 +11,7 @@ import java.time.ZonedDateTime;
 /**
  * Class that manages all SQL queries related to Appointments
  */
-public abstract class AppointmentsQuery {
+public class AppointmentsQuery {
 
     /**
      * Gets all appointments from the MySQL database

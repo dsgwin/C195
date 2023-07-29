@@ -10,7 +10,7 @@ import java.sql.*;
 /**
  * Class that manages all SQL queries related to Customers
  */
-public abstract class CustomerQuery {
+public class CustomerQuery {
 
     /**
      * Gets all customers from database

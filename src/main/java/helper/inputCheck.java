@@ -13,7 +13,7 @@ import java.time.*;
 /**
  * Class to perform input validation and exception handling
  */
-public abstract class inputCheck {
+public class inputCheck {
 
     /**
      * Checks that valid integers are included on required fields for Appointment objects

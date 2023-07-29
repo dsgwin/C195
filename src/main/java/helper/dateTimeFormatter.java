@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Class that assists with convert DateTime and Timestamp objects
  */
-public abstract class dateTimeFormatter {
+public class dateTimeFormatter {
 
     /**
      * Converts a Local Date and Time to Unix Timestamp

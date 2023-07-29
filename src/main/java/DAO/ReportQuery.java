@@ -13,7 +13,7 @@ import java.time.Month;
 /**
  * Manages all SQL Queries related to reporting
  */
-public abstract class ReportQuery {
+public class ReportQuery {
 
     /**
      * gets all appointments grouped by month and type

@@ -12,7 +12,7 @@ import java.sql.SQLException;
 /**
  * Class that manages all SQL Queries related to Contacts
  */
-public abstract class ContactsQuery {
+public class ContactsQuery {
 
     /**
      * Gets all Contacts from SQL database

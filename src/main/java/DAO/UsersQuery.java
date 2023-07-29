@@ -12,7 +12,7 @@ import java.sql.SQLException;
 /**
  * Manages all SQL queries related to Users
  */
-public abstract class UsersQuery {
+public class UsersQuery {
 
     /**
      * Gets all Users from the SQL database

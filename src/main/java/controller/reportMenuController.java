@@ -58,6 +58,7 @@ public class reportMenuController implements Initializable {
 
     /**
      * Method that loads the data for the Total Appointments by Country report
+     * Contains Lamba Expression #2 - Build String for Report Output
      * @param event
      */
     @FXML
@@ -74,6 +75,7 @@ public class reportMenuController implements Initializable {
 
     /**
      * Method that loads the Total Appointments by Month and Type Report
+     * Contains Lamba Expression #2 - Build String for Report Output
      * @param event
      */
     @FXML
@@ -90,6 +92,7 @@ public class reportMenuController implements Initializable {
 
     /**
      * Method to initialize the view and load the total appointments by type/month report
+     * Contains Lamba Expression #2 - Build String for Report Output
      * @param url
      * @param rb
      */
