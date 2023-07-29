@@ -17,8 +17,15 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+/**
+ * Class containing functions to help controllers move from one view to another.
+ */
 public abstract class controllerHelper {
 
+    /**
+     * Exits the application and provides a confirmation alert.
+     * @param event
+     */
     public static void applicationExit(Event event){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you would like to exit the application?");
 
@@ -29,6 +36,10 @@ public abstract class controllerHelper {
         }
     }
 
+    /**
+     * Loads the main menu screen of application
+     * @param event
+     */
     public static void loadMainMenu(Event event){
 
         Stage stage;
@@ -56,6 +67,10 @@ public abstract class controllerHelper {
 
     }
 
+    /**
+     * Loads the view customer screen of application
+     * @param event
+     */
     public static void loadCustomerView(Event event){
         Stage stage;
 
@@ -81,6 +96,10 @@ public abstract class controllerHelper {
         }
     }
 
+    /**
+     * loads the View Appointments screen of application
+     * @param event
+     */
     public static void loadAppointmentView(Event event){
         Stage stage;
 
@@ -106,6 +125,10 @@ public abstract class controllerHelper {
         }
     }
 
+    /**
+     * loads the Add appointment screen of application
+     * @param event
+     */
     public static void loadAddAppointment(Event event){
 
         Stage stage;
@@ -134,6 +157,10 @@ public abstract class controllerHelper {
 
     }
 
+    /**
+     * loads the Add customer screen of application
+     * @param event
+     */
     public static void loadAddCustomer(Event event){
 
         Stage stage;
@@ -161,6 +188,10 @@ public abstract class controllerHelper {
 
     }
 
+    /**
+     * loads the Report Menu screen of application
+     * @param event
+     */
     public static void loadReportMenu(Event event){
 
         Stage stage;
@@ -188,6 +219,12 @@ public abstract class controllerHelper {
 
     }
 
+    /**
+     * Performs a check of appointments within 15 minutes of user login
+     * If an appointment exists within 15 minutes, an alert will appear with appointment information
+     * If no appointment exists, an alert will appear displaying no upcoming appointments
+     * @param userId User ID of the user logging in.
+     */
     public static void upcomingAppointmentCheck(int userId){
         // Get current time
         LocalDateTime currentDateTime = LocalDateTime.now();

@@ -3,6 +3,9 @@ package helper;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * Class that manages connection to MySQL Database
+ */
 public abstract class JDBC {
 
     private static final String protocol = "jdbc";
@@ -15,6 +18,9 @@ public abstract class JDBC {
     private static String password = "Passw0rd!"; // Password
     public static Connection connection;  // Connection Interface
 
+    /**
+     * Method to open the connection to MySQL database
+     */
     public static void openConnection() {
         try {
             Class.forName(driver); // Locate Driver
@@ -25,10 +31,17 @@ public abstract class JDBC {
         }
     }
 
+    /**
+     * Method to get existing connection to database
+     * @return
+     */
     public static Connection getConnection(){
         return connection;
     }
 
+    /**
+     * Method to close the connection to the database when application closes
+     */
     public static void closeConnection() {
         try {
             connection.close();

@@ -11,6 +11,14 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
+ * @author
+ * Duncan Gwin
+ * dgwin4@wgu.edu
+ * 008698673
+ */
+
+
+/**
  * Main class that loads the application
  */
 public class Main extends Application {

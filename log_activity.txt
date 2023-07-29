@@ -1,1 +1,0 @@
-2023-07-28 15:12:16.467952: Successful login attempt for user "admin"!

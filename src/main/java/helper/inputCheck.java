@@ -10,8 +10,17 @@ import model.Users;
 
 import java.time.*;
 
+/**
+ * Class to perform input validation and exception handling
+ */
 public abstract class inputCheck {
 
+    /**
+     * Checks that valid integers are included on required fields for Appointment objects
+     * @param customerId customerId to check
+     * @param userId userId to check
+     * @return a string with relevant alert message based on input check
+     */
     public static String appointmentCheck(String customerId, String userId){
 
         String alertText = null;
@@ -34,6 +43,11 @@ public abstract class inputCheck {
         return alertText;
     }
 
+    /**
+     * Checks if customer exists in database
+     * @param customerId customerId to search in Database
+     * @return Boolean value on success or failure of customer check
+     */
     public static Boolean customerCheck(int customerId){
         Boolean customerExists = false;
         ObservableList<Customers> customerList = CustomerQuery.getAllCustomers();
@@ -45,6 +59,11 @@ public abstract class inputCheck {
         return  customerExists;
     }
 
+    /**
+     * Checks if a user exists in the database
+     * @param userId userId to search in database
+     * @return Boolean value on success or failure of user check
+     */
     public static Boolean userCheck(int userId){
         Boolean userExists = false;
         ObservableList<Users> userList = UsersQuery.getAllUsers();
@@ -56,6 +75,14 @@ public abstract class inputCheck {
         return  userExists;
     }
 
+    /**
+     * Checks if appointment times overlap with existing appointments for customer
+     * @param customerId customerId to check
+     * @param appointmentId appointmentId of new or updated appointment
+     * @param newStartTime new appointment start time
+     * @param newEndTime new appointment end time
+     * @return integer value of number of appointments where overlap exists. 0 will be returned if no overlap exists
+     */
     public static int overlapCheck(int customerId, int appointmentId, LocalDateTime newStartTime, LocalDateTime newEndTime){
 
         int overlap = 0;
@@ -75,6 +102,12 @@ public abstract class inputCheck {
         return overlap;
     }
 
+    /**
+     * Checks if appointment is within business hours in Eastern Time
+     * @param appointmentStart appointment start time to check
+     * @param appointmentEnd appointment end time to check
+     * @return Boolean value of whether appointment is within business hours.
+     */
     public static Boolean businessHoursCheck(LocalDateTime appointmentStart, LocalDateTime appointmentEnd){
         Boolean betweenBusinessHours = false;
         LocalTime businessOpen = LocalTime.of(7,59);
