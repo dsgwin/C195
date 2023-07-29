@@ -10,8 +10,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class that manages all SQL queries related to First Level Divisions
+ */
 public abstract class FirstLevelDivisionsQuery {
 
+    /**
+     * Gets all First Level Divisions from Database
+     * @return an observable list of First Level Division Objects
+     */
     public static ObservableList<FirstLevelDivisions> getAllDivisions() {
 
         ObservableList<FirstLevelDivisions> firstLevelDivisionsList = FXCollections.observableArrayList();

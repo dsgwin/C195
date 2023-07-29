@@ -7,8 +7,15 @@ import model.Customers;
 
 import java.sql.*;
 
+/**
+ * Class that manages all SQL queries related to Customers
+ */
 public abstract class CustomerQuery {
 
+    /**
+     * Gets all customers from database
+     * @return an observable list of customer objects
+     */
     public static ObservableList<Customers> getAllCustomers(){
         ObservableList<Customers> customerlist = FXCollections.observableArrayList();
 
@@ -53,6 +60,17 @@ public abstract class CustomerQuery {
 
     };
 
+    /**
+     * Inserts new customer into database
+     * @param customerName Sets Customer Name
+     * @param address Sets Address
+     * @param postalCode Sets postalCode
+     * @param phone Sets Phone Number
+     * @param divisionId Sets First Level Division ID
+     * @param user Sets User that added/updated customer
+     * @return an integer of the number of rows affected. Should be 1 for a successful insert
+     * @throws SQLException if an SQL exception occurs on insert
+     */
     public static int insert(String customerName, String address, String postalCode, String phone, int divisionId, String user) throws SQLException {
 
         Timestamp lastUpdate = helper.dateTimeFormatter.getCurrentTimestamp();
@@ -72,6 +90,18 @@ public abstract class CustomerQuery {
         return rowsAffected;
     }
 
+    /**
+     * Updates an existing customer in the database
+     * @param customerId Sets new CustomerID
+     * @param customerName Sets new Customer Name
+     * @param address Sets new Address
+     * @param postalCode Sets new Postal Code
+     * @param phone Sets new Phone Number
+     * @param divisionId Sets new First Level Division ID
+     * @param userName Sets Username of user who last updated the customer
+     * @return an integer of number of rows affected. Should be 1 for a successful update.
+     * @throws SQLException if an SQL Exception occurs on update
+     */
     public static int update(int customerId, String customerName, String address, String postalCode, String phone, int divisionId, String userName) throws SQLException {
 
         Timestamp lastUpdate = helper.dateTimeFormatter.getCurrentTimestamp();
@@ -92,6 +122,12 @@ public abstract class CustomerQuery {
     }
 
 
+    /**
+     * Deletes customer from databased
+     * @param customerId CustomerID of customer to deleted
+     * @return integer of number of rows affected. Should be 1 for a succesful deletion.
+     * @throws SQLException if an SQL Exception occurs on deletion.
+     */
     public static int delete(int customerId) throws SQLException {
         String sql = "DELETE FROM customers WHERE Customer_ID=(?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);

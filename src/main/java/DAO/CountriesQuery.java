@@ -9,8 +9,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Class that manages all SQL queries related to Countries
+ */
 public abstract class CountriesQuery {
 
+    /**
+     * Gets all countries from SQL Database
+     * @return an observable list of Countries objects
+     */
     public static ObservableList<Countries> getAllCountries() {
 
         ObservableList<Countries> clist = FXCollections.observableArrayList();

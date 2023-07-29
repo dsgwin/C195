@@ -10,8 +10,15 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.Month;
 
+/**
+ * Manages all SQL Queries related to reporting
+ */
 public abstract class ReportQuery {
 
+    /**
+     * gets all appointments grouped by month and type
+     * @return an observable list of String objects to display in a report
+     */
     public static ObservableList<String> getAppointmentsByType() {
 
         ObservableList<String> list = FXCollections.observableArrayList();
@@ -43,6 +50,10 @@ public abstract class ReportQuery {
         return list;
     }
 
+    /**
+     * gets all appointments for a selected Contact ID.
+     * @return an observable list of String objects to display in a report
+     */
     public static ObservableList<String> getContactSchedule(int contacId) {
 
         ObservableList<String> list = FXCollections.observableArrayList();
@@ -81,6 +92,10 @@ public abstract class ReportQuery {
         return list;
     }
 
+    /**
+     * gets all appointments grouped by Country
+     * @return an observable list of String objects to display in a report
+     */
     public static ObservableList<String> getAppointmentsByCountry() {
 
         ObservableList<String> list = FXCollections.observableArrayList();

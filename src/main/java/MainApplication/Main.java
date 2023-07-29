@@ -10,9 +10,17 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
-
+/**
+ * Main class that loads the application
+ */
 public class Main extends Application {
 
+
+    /**
+     * Loads the login screen of the application.
+     * @param stage
+     * @throws IOException if an I/O Error occurs
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/MainApplication/Login.fxml"));
@@ -22,6 +30,11 @@ public class Main extends Application {
         stage.show();
     }
 
+    /**
+     * Creates log file for logging user activity and connects to the Database using the JDBC connection methods.
+     * @param args
+     * @throws SQLException
+     */
     public static void main(String[] args) throws SQLException {
         try {
             File logFile = new File("log_activity.txt");

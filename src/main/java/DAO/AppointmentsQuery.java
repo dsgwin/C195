@@ -8,8 +8,15 @@ import model.Appointments;
 import java.sql.*;
 import java.time.ZonedDateTime;
 
+/**
+ * Class that manages all SQL queries related to Appointments
+ */
 public abstract class AppointmentsQuery {
 
+    /**
+     * Gets all appointments from the MySQL database
+     * @return an Observable List of appointment objects
+     */
     public static ObservableList<Appointments> getAllAppointments() {
 
         ObservableList<Appointments> alist = FXCollections.observableArrayList();
@@ -51,6 +58,21 @@ public abstract class AppointmentsQuery {
         return alist;
     }
 
+    /**
+     * Inserts new appointment into MySQL database
+     * @param appointmentTitle Sets the Appointment Title
+     * @param appointmentDescription Sets the Appointment description
+     * @param appointmentLocation Sets the Appointment Location
+     * @param appointmentType Sets the Appointment Type
+     * @param appointmentStart Sets the Appointment Start Date/Time
+     * @param appointmentEnd Sets the Appointment End Date/Time
+     * @param customerId Sets the Customer ID
+     * @param userId Sets the User ID
+     * @param contactId Sets the Contact ID
+     * @param userName Sets the User Name that is updating and creating the appointment
+     * @return an integer of the number of Rows affected. Should be 1 for a successful insert.
+     * @throws SQLException if an SQL Exception occurs on insert
+     */
     public static int insert(String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType,  Timestamp appointmentStart, Timestamp appointmentEnd, int customerId, int userId, int contactId, String userName) throws SQLException {
 
             String sql = "INSERT INTO appointments (Title, Description, Location, Type, Start, End, Created_By, Last_Updated_By, Customer_ID, User_ID, Contact_ID, Last_Update) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -76,6 +98,22 @@ public abstract class AppointmentsQuery {
         return rowsAffected;
     }
 
+    /**
+     * Updates an existing appointment in the SQL database
+     * @param appointmentId Sets the new Appointment ID
+     * @param appointmentTitle Sets the new Appointment Title
+     * @param appointmentDescription Sets the new Appointment Description
+     * @param appointmentLocation Sets the new Appointment Location
+     * @param appointmentType Sets the new Appointment Type
+     * @param appointmentStart Sets the new Start Date/Time
+     * @param appointmentEnd Sets the new End Date/Time
+     * @param customerId Sets the new Customer ID
+     * @param userId Sets the new user ID
+     * @param contactId Sets the new Contact ID
+     * @param userName Sets the user name of the Last Updated By
+     * @return an integer of the number of rows affected by update. Should be 1 for a successful update.
+     * @throws SQLException if an SQL exception occurs on update
+     */
     public static int update(int appointmentId, String appointmentTitle, String appointmentDescription, String appointmentLocation, String appointmentType,  Timestamp appointmentStart, Timestamp appointmentEnd, int customerId, int userId, int contactId, String userName) throws SQLException {
 
         String sql = "UPDATE appointments SET Title=(?), Description=(?), Location=(?), Type=(?), Start=(?), End=(?), Last_Updated_By=(?), Customer_ID=(?), User_ID=(?), Contact_ID=(?), Last_Update=(?) WHERE Appointment_ID=(?)";
@@ -101,6 +139,12 @@ public abstract class AppointmentsQuery {
         return rowsAffected;
     }
 
+    /**
+     * Deletes an appointment from the database
+     * @param appointmentId Appointment ID of the appointment to be deleted
+     * @return an integer of the number of rows affected. Should be 1 on a successful delete
+     * @throws SQLException
+     */
     public static int delete(int appointmentId) throws SQLException {
         String sql = "DELETE FROM appointments WHERE Appointment_ID=(?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -110,6 +154,12 @@ public abstract class AppointmentsQuery {
         return rowsAffected;
     }
 
+    /**
+     * Deletes all customer appointments based on matching the customer ID
+     * @param customerId Customer ID of the appointments to be deleted
+     * @return an integer of the number of rows affected.
+     * @throws SQLException if an SQL exception occurs on delete.
+     */
     public static int deleteCustomerAppointments(int customerId) throws SQLException {
 
             String sql = "DELETE FROM appointments WHERE Customer_ID=(?)";
@@ -123,6 +173,12 @@ public abstract class AppointmentsQuery {
         return rowsAffected;
     }
 
+    /**
+     * Gets all appointments between a date/time range
+     * @param filterStart Start date/time of filter
+     * @param filterEnd End date/time of filter
+     * @return an observable list of appointments between the date range
+     */
     public static ObservableList<Appointments> getAppointmentsFiltered(ZonedDateTime filterStart, ZonedDateTime filterEnd) {
 
         ObservableList<Appointments> alist = FXCollections.observableArrayList();
@@ -168,6 +224,13 @@ public abstract class AppointmentsQuery {
         return alist;
     }
 
+    /**
+     * Gets all appointments for a selected user.
+     * @param user userID of the appointments to be queried
+     * @param startRange Start date/time of appointments to be queried
+     * @param endRange Start date/time of appointments to be queried
+     * @return an observable list of appointments for a given user
+     */
     public static ObservableList<Appointments> getUserAppointments(int user, Timestamp startRange, Timestamp endRange){
 
         ObservableList<Appointments> alist = FXCollections.observableArrayList();
@@ -213,6 +276,11 @@ public abstract class AppointmentsQuery {
         return alist;
     }
 
+    /**
+     * gets all appointments for a customer
+     * @param customer Customer ID of appointments to be queried
+     * @return an observable list of all appointments for a given customer
+     */
     public static ObservableList<Appointments> getCustomerAppointments(int customer) {
 
         ObservableList<Appointments> alist = FXCollections.observableArrayList();

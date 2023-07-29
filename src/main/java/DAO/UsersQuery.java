@@ -9,8 +9,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Manages all SQL queries related to Users
+ */
 public abstract class UsersQuery {
 
+    /**
+     * Gets all Users from the SQL database
+     * @return an observable list of Users objects
+     */
     public static ObservableList<Users> getAllUsers() {
 
         ObservableList<Users> userList = FXCollections.observableArrayList();
@@ -42,6 +49,14 @@ public abstract class UsersQuery {
 
         return userList;
     }
+
+    /**
+     * Checks for UserName and Password presence in database to verify login
+     * @param loginUserName Username to check
+     * @param loginPassword Password to check
+     * @return Boolean value of true for successful or false for failed login.
+     * @throws SQLException if SQL Exception occurs related to query execution.
+     */
     public static Boolean userLoginQuery(String loginUserName, String loginPassword) throws SQLException {
         Boolean loginResult = false;
 
