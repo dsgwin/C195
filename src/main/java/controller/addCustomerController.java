@@ -15,6 +15,9 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Class for the GUI controls of Adding Customers to Database
+ */
 public class addCustomerController implements Initializable {
 
 
@@ -36,6 +39,10 @@ public class addCustomerController implements Initializable {
     @FXML
     private ComboBox<Countries> countryBox;
 
+    /**
+     * Method that loads the First Level Divisions relevant to the selected Country in ComboBox
+     * @param event
+     */
     @FXML
     void onSelect(ActionEvent event) {
         state_provinceBox.getItems().clear();
@@ -54,6 +61,10 @@ public class addCustomerController implements Initializable {
 
     }
 
+    /**
+     * Method to send the user back to the view customers menu without saving the customer data
+     * @param event
+     */
     @FXML
     void onCancelBtnClick(ActionEvent event) {
 
@@ -66,6 +77,10 @@ public class addCustomerController implements Initializable {
         }
     }
 
+    /**
+     * Method that saves the customer input data and inserts into MySQL Database
+     * @param event
+     */
     @FXML
     void onSaveBtnClick(ActionEvent event) {
 
@@ -96,6 +111,11 @@ public class addCustomerController implements Initializable {
 
     }
 
+    /**
+     * Method that initializes the data for ComboBox selection data
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 

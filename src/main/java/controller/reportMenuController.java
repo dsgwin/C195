@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import model.Contacts;
@@ -14,17 +13,21 @@ import model.Contacts;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Class that manages the Report Menu Interface
+ */
 public class reportMenuController implements Initializable {
 
     @FXML
     private Label reportHeader;
 
     @FXML
-    private Button reports;
-
-    @FXML
     private TextArea txtField;
 
+    /**
+     * Method that loads the data for the Contact Schedule report when clicked
+     * @param event
+     */
     @FXML
     void contactScheduleBtnClick(ActionEvent event){
         StringBuilder displayString = new StringBuilder();
@@ -42,6 +45,10 @@ public class reportMenuController implements Initializable {
 
     }
 
+    /**
+     * Method that takes the user back to the main menu when clicked
+     * @param event
+     */
     @FXML
     void mainMenuBtnClick(ActionEvent event) {
 
@@ -49,6 +56,10 @@ public class reportMenuController implements Initializable {
 
     }
 
+    /**
+     * Method that loads the data for the Total Appointments by Country report
+     * @param event
+     */
     @FXML
     void totalByCountryBtnClick(ActionEvent event) {
 
@@ -61,8 +72,12 @@ public class reportMenuController implements Initializable {
         txtField.setText(displayString.toString());
     }
 
+    /**
+     * Method that loads the Total Appointments by Month and Type Report
+     * @param event
+     */
     @FXML
-    void totalByCustBtnClick(ActionEvent event) {
+    void totalByTypeBtnClick(ActionEvent event) {
         StringBuilder displayString = new StringBuilder();
         reportHeader.setText("Total Appointments by Type/Month");
 
@@ -73,6 +88,11 @@ public class reportMenuController implements Initializable {
 
     }
 
+    /**
+     * Method to initialize the view and load the total appointments by type/month report
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 

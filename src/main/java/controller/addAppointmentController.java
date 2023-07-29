@@ -19,6 +19,9 @@ import java.time.*;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Class and Methods to Add Appointments
+ */
 public class addAppointmentController implements Initializable {
 
     ObservableList<String> hours = FXCollections.observableArrayList();
@@ -65,6 +68,11 @@ public class addAppointmentController implements Initializable {
     @FXML
     private TextField userIdTxt;
 
+    /**
+     * Method to send the user back to the view appointment menu without saving the appointment data
+     * @param event
+     */
+
     @FXML
     void onCancelBtnClick(ActionEvent event) {
 
@@ -76,6 +84,12 @@ public class addAppointmentController implements Initializable {
         }
 
     }
+
+    /**
+     * Method to save to appointment input data and insert into the MySQL database.
+     * @param event
+     * @throws SQLException if SQL insert fails
+     */
 
     @FXML
     void onSaveBtnClick(ActionEvent event) throws SQLException {
@@ -157,6 +171,11 @@ public class addAppointmentController implements Initializable {
 
     }
 
+    /**
+     * Method to initialize the view and load combo boxes with selectable data
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb){
         // Initialize Date/Time ComboBoxes

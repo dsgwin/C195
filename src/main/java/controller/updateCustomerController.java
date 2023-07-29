@@ -16,6 +16,9 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Class that controls the Update Customer menu of the application
+ */
 public class updateCustomerController implements Initializable {
 
     ObservableList<Countries> countryList = FXCollections.observableArrayList();
@@ -43,6 +46,10 @@ public class updateCustomerController implements Initializable {
     @FXML
     private ComboBox<Countries> countryBox;
 
+    /**
+     * Method to auto-populate first-level divisions based on the Country selection
+     * @param event
+     */
     @FXML
     void onSelect(ActionEvent event) {
         state_provinceBox.getItems().clear();
@@ -56,6 +63,10 @@ public class updateCustomerController implements Initializable {
         }
     }
 
+    /**
+     * Method to return the user to the View Customer menu of the application
+     * @param event
+     */
     @FXML
     void onCancelBtnClick(ActionEvent event) {
 
@@ -68,6 +79,11 @@ public class updateCustomerController implements Initializable {
 
     }
 
+    /**
+     * Method that transmits the modified customer data and sends it to the SQL server.
+     * The data is transmitted using the update function of SQL.
+     * @param event
+     */
     @FXML
     void onSaveBtnClick(ActionEvent event) {
 
@@ -97,6 +113,10 @@ public class updateCustomerController implements Initializable {
 
     }
 
+    /**
+     * Method to transmit data from a selected customer in the View Customer menu and populate the update fields for editing.
+     * @param customer
+     */
     void sendCustomer(Customers customer){
         int divisionId = customer.getDivisionId();
         int countryId = -1;
@@ -124,6 +144,11 @@ public class updateCustomerController implements Initializable {
 
     }
 
+    /**
+     * Method to initialize ComboBox data in the update fields.
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         divisionList.addAll(DAO.FirstLevelDivisionsQuery.getAllDivisions());

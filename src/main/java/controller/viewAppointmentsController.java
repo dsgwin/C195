@@ -24,6 +24,9 @@ import java.time.ZonedDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Class that controls the View Appointment menu of the application
+ */
 public class viewAppointmentsController  implements Initializable {
 
     Stage stage;
@@ -72,6 +75,10 @@ public class viewAppointmentsController  implements Initializable {
     @FXML
     private RadioButton monthlyRBtn;
 
+    /**
+     * Method that changes the date filter to all dates when All Radio Button is selected
+     * @param event
+     */
     @FXML
     void allRBtnSelected(ActionEvent event) {
         filterDate.setDisable(true);
@@ -81,6 +88,10 @@ public class viewAppointmentsController  implements Initializable {
 
     }
 
+    /**
+     * Method that updates the filter based on date input in the date selector
+     * @param event
+     */
     @FXML
     void filterDateChanged(ActionEvent event) {
         // Get Local Date from Date Selector
@@ -111,6 +122,10 @@ public class viewAppointmentsController  implements Initializable {
 
     }
 
+    /**
+     * Method that updates the filter to a range that is 1 month from the selected filter date
+     * @param event
+     */
     @FXML
     void monthlyRBtnSelected(ActionEvent event) {
         filterDate.setDisable(false);
@@ -127,7 +142,10 @@ public class viewAppointmentsController  implements Initializable {
 
     }
 
-
+    /**
+     * Method that updates the filter to a range that is 1 week from the selected filter date
+     * @param event
+     */
     @FXML
     void weeklyRBtnSelected(ActionEvent event) {
 
@@ -147,6 +165,10 @@ public class viewAppointmentsController  implements Initializable {
 
     }
 
+    /**
+     * Method that loads the Add Appointment screen of the application
+     * @param event
+     */
     @FXML
     void onAddBtnClick(ActionEvent event) {
 
@@ -154,6 +176,11 @@ public class viewAppointmentsController  implements Initializable {
 
     }
 
+    /**
+     * Method that deletes the selected appointment
+     * If no appointment is selected, an alert will appear.
+     * @param event
+     */
     @FXML
     void onDeleteBtnClick(ActionEvent event) {
 
@@ -180,6 +207,10 @@ public class viewAppointmentsController  implements Initializable {
 
     }
 
+    /**
+     * Method that returns the user to the main menu of the application
+     * @param event
+     */
     @FXML
     void onMainMenuBtnClick(ActionEvent event) {
 
@@ -187,6 +218,11 @@ public class viewAppointmentsController  implements Initializable {
 
     }
 
+    /**
+     * Method that loads the Update Appointment screen based on the selected appointment.
+     * If no appointment is selected, an alert will appear.
+     * @param event
+     */
     @FXML
     void onUpdateBtnClick(ActionEvent event) {
 
@@ -218,6 +254,11 @@ public class viewAppointmentsController  implements Initializable {
 
     }
 
+    /**
+     * Method to initialize the data in the view and populate with appointments identified via SQL query
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         idCol.setSortType(TableColumn.SortType.ASCENDING);

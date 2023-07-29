@@ -18,6 +18,9 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Class that controller the View Customers menu of the application
+ */
 public class viewCustomerController implements Initializable {
 
     Stage stage;
@@ -49,6 +52,10 @@ public class viewCustomerController implements Initializable {
     private TableColumn<Customers, String> phoneCol;
 
 
+    /**
+     * Method that loads the Add Customer screen of the application
+     * @param event
+     */
     @FXML
     void onAddBtnClick(ActionEvent event) {
 
@@ -56,6 +63,13 @@ public class viewCustomerController implements Initializable {
 
     }
 
+    /**
+     * Method that deletes the selected customer and all associated appointments.
+     * A confirmation will appear when a customer is selected for deletion.
+     * If no customer is selected, an alert will appear.
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void onDeleteBtnClick(ActionEvent event) throws SQLException {
         Customers customer = customersTblView.getSelectionModel().getSelectedItem();
@@ -83,6 +97,10 @@ public class viewCustomerController implements Initializable {
 
     }
 
+    /**
+     * Method that returns the user to the main menu of the application
+     * @param event
+     */
     @FXML
     void onMainMenuBtnClick(ActionEvent event) {
 
@@ -90,6 +108,11 @@ public class viewCustomerController implements Initializable {
 
     }
 
+    /**
+     * Method that loads the update customer screen based on the selected customer.
+     * If no customer is selected, an alert will appear.
+     * @param event
+     */
     @FXML
     void onUpdateBtnClick(ActionEvent event) {
 
@@ -119,6 +142,11 @@ public class viewCustomerController implements Initializable {
 
     }
 
+    /**
+     * Method to initialize the customer data based on SQL Query
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 

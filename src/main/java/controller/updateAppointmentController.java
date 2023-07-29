@@ -23,7 +23,9 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 
-
+/**
+ * Class to load the Update Appointment interface of the application
+ */
 public class updateAppointmentController implements Initializable {
 
     ObservableList<String> hours = FXCollections.observableArrayList();
@@ -73,6 +75,10 @@ public class updateAppointmentController implements Initializable {
     @FXML
     private DatePicker endDateBox;
 
+    /**
+     * Method to return the user to the View Appointment menu of the application
+     * @param event
+     */
     @FXML
     void onCancelBtnClick(ActionEvent event) {
 
@@ -85,6 +91,12 @@ public class updateAppointmentController implements Initializable {
 
     }
 
+    /**
+     * Method to update an existing appointment in the SQL database.
+     * Input Data will be saved and then sent to the MySQL server using the update method.
+     * @param event
+     * @throws SQLException if SQL update fails
+     */
     @FXML
     void onSaveBtnClick(ActionEvent event) throws SQLException {
 
@@ -166,6 +178,10 @@ public class updateAppointmentController implements Initializable {
 
     }
 
+    /**
+     * This method is used to send the data from a selected appointment in the View Appointment screen and auto-populate the fields for update.
+     * @param appointment
+     */
     void sendAppointment(Appointments appointment){
 
         String startHour = dateTimeFormatter.formatTimeHour(appointment.getStart().toLocalDateTime());
@@ -197,6 +213,11 @@ public class updateAppointmentController implements Initializable {
 
     }
 
+    /**
+     * Method to populate date/time and contact ComboBoxes
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Initialize Date/Time ComboBoxes

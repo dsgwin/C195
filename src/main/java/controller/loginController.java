@@ -17,6 +17,9 @@ import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+/**
+ * Class for controller that manages User Login to application
+ */
 public class loginController implements Initializable {
 
     @FXML
@@ -52,6 +55,10 @@ public class loginController implements Initializable {
     @FXML
     private Label errorLbl;
 
+    /**
+     * Exits application when exit button is clicked
+     * @param event
+     */
     @FXML
     void exitBtnClicked(ActionEvent event) {
 
@@ -59,6 +66,13 @@ public class loginController implements Initializable {
 
     }
 
+    /**
+     * Takes user login and password input data and sends to database for verification of successful login
+     * If login is successful, access to Main Menu is granted. If login fails, an alert is displayed.
+     * Contains Lambda Expression #1 to write log message of failed or successful login
+     * @param event
+     * @throws SQLException
+     */
     @FXML
     void loginBtnClicked(ActionEvent event) throws SQLException {
         ResourceBundle rb = ResourceBundle.getBundle("MainApplication/Nat", Locale.getDefault());
@@ -93,6 +107,11 @@ public class loginController implements Initializable {
 
     }
 
+    /**
+     * Initializes data to display ZoneID on login screen. Manages language of login screen based on User's system language.
+     * @param url
+     * @param rb
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -119,6 +138,10 @@ public class loginController implements Initializable {
 
     }
 
+    /**
+     * Creates log_activity FileWriter to record successful and failed login attempts.
+     * @param logMessage
+     */
     private void logWrite(String logMessage){
         try {
             FileWriter myWriter = new FileWriter("log_activity.txt", true);
