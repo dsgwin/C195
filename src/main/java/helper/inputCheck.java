@@ -3,6 +3,7 @@ package helper;
 import DAO.AppointmentsQuery;
 import DAO.CustomerQuery;
 import DAO.UsersQuery;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
 import model.Customers;
@@ -89,10 +90,12 @@ public class inputCheck {
      * @param newEndTime new appointment end time
      * @return integer value of number of appointments where overlap exists. 0 will be returned if no overlap exists
      */
-    public static int overlapCheck(int customerId, int appointmentId, LocalDateTime newStartTime, LocalDateTime newEndTime){
+    public static ObservableList<Appointments> overlapCheck(int customerId, int appointmentId, LocalDateTime newStartTime, LocalDateTime newEndTime){
 
         int overlap = 0;
         ObservableList<Appointments> appointments = AppointmentsQuery.getCustomerAppointments(customerId);
+        //Modify to make error message more specific
+        ObservableList<Appointments> conflictingAppointments = FXCollections.observableArrayList();
         for(Appointments appointment : appointments){
             LocalDateTime appointmentStart = appointment.getStart().toLocalDateTime();
             LocalDateTime appointmentEnd = appointment.getEnd().toLocalDateTime();
@@ -101,11 +104,11 @@ public class inputCheck {
             if((newStartTime.isAfter(appointmentStart) && newStartTime.isBefore(appointmentEnd)) ||
                     (newEndTime.isAfter(appointmentStart) && newEndTime.isBefore(appointmentEnd)))
             {
-                overlap++;
+                conflictingAppointments.add(appointment);
             }
 
         }
-        return overlap;
+        return conflictingAppointments;
     }
 
     /**

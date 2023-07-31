@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import model.Appointments;
 import model.Contacts;
 import model.Users;
 
@@ -125,7 +126,7 @@ public class addAppointmentController implements Initializable {
             Timestamp appointmentEnd = dateTimeFormatter.localToTimestamp(endDate, endHour, endMinute);
             LocalDateTime localStart = LocalDateTime.of(startDate, LocalTime.of(Integer.parseInt(startHour), Integer.parseInt(startMinute)));
             LocalDateTime localEnd = LocalDateTime.of(endDate, LocalTime.of(Integer.parseInt(endHour), Integer.parseInt(endMinute)));
-            int overlapCheck = helper.inputCheck.overlapCheck(customerId, -1, localStart, localEnd);
+            ObservableList<Appointments> overlapCheck = helper.inputCheck.overlapCheck(customerId, -1, localStart, localEnd);
             Boolean businessHour = helper.inputCheck.businessHoursCheck(localStart, localEnd);
             Boolean customerCheck = helper.inputCheck.customerCheck(customerId);
             Boolean userCheck = helper.inputCheck.userCheck(userId);
@@ -140,8 +141,15 @@ public class addAppointmentController implements Initializable {
             }
 
             //Check Overlap
-            else if (overlapCheck > 0){
-                alertText = "Appointment time conflicts with existing customer appointment. Please modify.";
+            else if (!(overlapCheck.isEmpty())){
+                StringBuilder appointmentList = new StringBuilder();
+                for(Appointments appointment : overlapCheck){
+                    appointmentList.append("ID: "+ appointment.getAppointmentId() + "\n");
+                    appointmentList.append("Start Time: " + appointment.getStart() + "\n");
+                    appointmentList.append("End Time: " + appointment.getEnd() + "\n\n");
+                }
+
+                alertText = "Appointment time conflicts with existing customer appointment:\n\n" + appointmentList + "Please modify.";
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Adding Appointment");
                 alert.setContentText(alertText);
@@ -162,7 +170,7 @@ public class addAppointmentController implements Initializable {
                 alert.showAndWait();
             }
 
-            if (businessHour == true && overlapCheck == 0 && customerCheck == true && userCheck == true) {
+            if (businessHour == true && overlapCheck.isEmpty() && customerCheck == true && userCheck == true) {
                 AppointmentsQuery.insert(title, description, location, type, appointmentStart, appointmentEnd, customerId, userId, contactId, Users.currentUserName);
                 helper.controllerHelper.loadAppointmentView(event);
             }
