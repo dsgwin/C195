@@ -8,10 +8,5 @@ module com.example.c195 {
     exports MainApplication;
     exports controller;
     opens controller to javafx.fxml;
-    exports model;
-    opens model to javafx.fxml;
-    exports DAO;
-    opens DAO to javafx.fxml;
-    exports helper;
-    opens helper to javafx.fxml;
+    opens model;
 }

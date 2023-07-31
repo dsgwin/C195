@@ -24,6 +24,11 @@ public class Customers  {
     private Timestamp lastUpdate;
     private String lastUpdatedBy;
     private int divisionId;
+
+    public String getDivision() {
+        return division;
+    }
+
     private String division;
     private String country;
 

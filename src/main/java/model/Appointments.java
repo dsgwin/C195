@@ -133,5 +133,10 @@ public class Appointments {
     private int customerId;
     private int userId;
     private int contactId;
+
+    public String getContactName() {
+        return contactName;
+    }
+
     private String contactName;
 }
