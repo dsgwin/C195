@@ -1,4 +1,10 @@
 package model;
+/**
+ * @author
+ * Duncan Gwin
+ * dgwin4@wgu.edu
+ * 008698673
+ */
 
 /**
  * Class for Countries objects

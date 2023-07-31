@@ -8,6 +8,12 @@ import model.Countries;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+/**
+ * @author
+ * Duncan Gwin
+ * dgwin4@wgu.edu
+ * 008698673
+ */
 
 /**
  * Class that manages all SQL queries related to Countries

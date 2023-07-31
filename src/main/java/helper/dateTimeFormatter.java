@@ -3,6 +3,12 @@ package helper;
 import java.sql.Timestamp;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+/**
+ * @author
+ * Duncan Gwin
+ * dgwin4@wgu.edu
+ * 008698673
+ */
 
 /**
  * Class that assists with convert DateTime and Timestamp objects

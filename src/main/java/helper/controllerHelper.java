@@ -20,6 +20,13 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
+ * @author
+ * Duncan Gwin
+ * dgwin4@wgu.edu
+ * 008698673
+ */
+
+/**
  * Class containing functions to help controllers move from one view to another.
  */
 public class controllerHelper {

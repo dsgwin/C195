@@ -2,6 +2,12 @@ package model;
 
 
 import java.sql.Timestamp;
+/**
+ * @author
+ * Duncan Gwin
+ * dgwin4@wgu.edu
+ * 008698673
+ */
 
 /**
  * Class for Appointments objects

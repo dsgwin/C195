@@ -9,6 +9,12 @@ import model.Customers;
 import model.Users;
 
 import java.time.*;
+/**
+ * @author
+ * Duncan Gwin
+ * dgwin4@wgu.edu
+ * 008698673
+ */
 
 /**
  * Class to perform input validation and exception handling

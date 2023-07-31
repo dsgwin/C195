@@ -3,6 +3,12 @@ package controller;
 import helper.*;;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+/**
+ * @author
+ * Duncan Gwin
+ * dgwin4@wgu.edu
+ * 008698673
+ */
 
 /**
  * Class for Main Menu of application that includes buttons for Customer, Appointment, and Report Views

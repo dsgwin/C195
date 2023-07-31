@@ -4,6 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 /**
+ * @author
+ * Duncan Gwin
+ * dgwin4@wgu.edu
+ * 008698673
+ */
+
+/**
  * Class that manages connection to MySQL Database
  */
 public abstract class JDBC {

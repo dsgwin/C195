@@ -18,6 +18,12 @@ import java.sql.Timestamp;
 import java.time.*;
 import java.util.Optional;
 import java.util.ResourceBundle;
+/**
+ * @author
+ * Duncan Gwin
+ * dgwin4@wgu.edu
+ * 008698673
+ */
 
 /**
  * Class and Methods to Add Appointments

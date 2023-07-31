@@ -12,6 +12,12 @@ import model.Contacts;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+/**
+ * @author
+ * Duncan Gwin
+ * dgwin4@wgu.edu
+ * 008698673
+ */
 
 /**
  * Class that manages the Report Menu Interface

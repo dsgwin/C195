@@ -8,6 +8,13 @@ import model.Customers;
 import java.sql.*;
 
 /**
+ * @author
+ * Duncan Gwin
+ * dgwin4@wgu.edu
+ * 008698673
+ */
+
+/**
  * Class that manages all SQL queries related to Customers
  */
 public class CustomerQuery {

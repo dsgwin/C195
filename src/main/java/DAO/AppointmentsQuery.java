@@ -9,6 +9,13 @@ import java.sql.*;
 import java.time.ZonedDateTime;
 
 /**
+ * @author
+ * Duncan Gwin
+ * dgwin4@wgu.edu
+ * 008698673
+ */
+
+/**
  * Class that manages all SQL queries related to Appointments
  */
 public class AppointmentsQuery {
