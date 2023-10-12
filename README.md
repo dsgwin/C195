@@ -1,7 +1,7 @@
 # C195 - QAM2 TASK 1: JAVA APPLICATION DEVELOPMENT
 
 ### Purpose of application
-The purpose of this application is to provide a GUI based scheduling desktop application.
+The purpose of this application is to provide a GUI based scheduling desktop application that interfaces with an exsiting MySQL database. 
 
 ### Information
 Author: Duncan Gwin\
