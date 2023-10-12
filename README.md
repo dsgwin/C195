@@ -5,8 +5,6 @@ The purpose of this application is to provide a GUI based scheduling desktop app
 
 ### Information
 Author: Duncan Gwin\
-Contact: dgwin4@wgu.edu\
-Student ID: 008698673\
 Application Version: 1.0\
 Date: 7/28/2023
 
